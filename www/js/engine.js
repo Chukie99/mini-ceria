@@ -78,13 +78,16 @@ async function fetchContent(cat){
 function playAudio(src){
   const a = el("audioPlayer");
   if(!a) return;
+  const q = state.questions[state.idx];
+  const fallbackText = q ? (q.prompt_text||q.q) : "";
+  // robust fallback: both load error + play reject -> speechSynthesis (bukan baca HTML)
+  a.onerror = ()=>{ if(fallbackText) speakFallback(fallbackText); };
+  try{ a.pause(); }catch(e){}
   a.src = src;
+  a.load();
   a.currentTime = 0;
-  a.play().catch(()=>{
-    // fallback TTS if file missing
-    const q = state.questions[state.idx];
-    if(q && q.prompt_text) speakFallback(q.prompt_text);
-  });
+  const p = a.play();
+  if(p && p.catch) p.catch(()=>{ if(fallbackText) speakFallback(fallbackText); });
 }
 
 function speakFallback(text){
@@ -362,13 +365,16 @@ window.addEventListener("popstate", (e)=>{
     try{ history.pushState({screen:"home"}, "", "#home"); }catch(e){}
   }
 });
-// hardware back via capacitor
+// hardware back via capacitor - popup Yes/No, bukan langsung close
 document.addEventListener("backbutton", (e)=>{
   e.preventDefault();
+  const popup = el("exitPopup");
+  const isPopupOpen = popup && !popup.classList.contains("hidden");
+  if(isPopupOpen){ popup.classList.add("hidden"); return; }
   const active = document.querySelector(".screen.active");
   if(active && active.id==="game"){ app.goHome(); }
   else if(active && active.id==="home"){
-    if(confirm("Keluar dari Mini Ceria?")) navigator.app?.exitApp?.() || window.close();
+    popup.classList.remove("hidden");
   } else app.goHome();
 }, false);
 
