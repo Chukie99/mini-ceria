@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#FFB703">
+<title>Mini Ceria - Hijaiyah Alfabet Hewan</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Fredoka:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="bg-decor" aria-hidden="true"><span class="cloud c1"></span><span class="cloud c2"></span><span class="cloud c3"></span></div>
+
+<header id="header">
+  <div class="logo" id="logoTap"><span class="logo-icon">🌟</span> Mini Ceria</div>
+  <div class="stars"><span class="pill star-pill" id="starCount">⭐ 0</span><span class="pill trophy-pill" id="stickerCount">🏆 0</span></div>
+</header>
+
+<!-- HOME -->
+<section id="home" class="screen active">
+  <div class="hero">
+    <div class="hero-badge">✨ Untuk Anak 1–5 Tahun • 100% Offline • Bebas Iklan</div>
+    <h1>Belajar Sambil <span class="hl">Main!</span></h1>
+    <p class="hero-sub">Semua pakai <b>suara</b> — anak belum bisa baca tetap bisa. Emak pilih tema, anak tinggal TAP gambar gede.</p>
+    <div class="mascot-row">
+      <span class="mascot">🧒</span><span class="mascot m2">🐱</span><span class="mascot m3">📚</span>
+    </div>
+  </div>
+
+  <h2 class="section-title">Pilih Tema Belajar 👇 <span>Emak yang pencet</span></h2>
+  <div class="grid3">
+    <button class="cat-card hijaiyah" onclick="app.start('hijaiyah')">
+      <div class="cat-top"><span class="cat-icon">ب</span><span class="cat-badge">10 Soal</span></div>
+      <div class="cat-title">Hijaiyah</div>
+      <div class="cat-desc">Alif – Kha • Tap + Suara</div>
+      <div class="cat-arrow">Main →</div>
+    </button>
+    <button class="cat-card alfabet" onclick="app.start('alfabet')">
+      <div class="cat-top"><span class="cat-icon">Abc</span><span class="cat-badge">10 Soal</span></div>
+      <div class="cat-title">Alfabet</div>
+      <div class="cat-desc">A – F • Huruf Besar</div>
+      <div class="cat-arrow">Main →</div>
+    </button>
+    <button class="cat-card hewan" onclick="app.start('hewan')">
+      <div class="cat-top"><span class="cat-icon">🐱</span><span class="cat-badge">10 Soal</span></div>
+      <div class="cat-title">Hewan</div>
+      <div class="cat-desc">Kucing – Kelinci • Gambar</div>
+      <div class="cat-arrow">Main →</div>
+    </button>
+  </div>
+
+  <div class="trust">
+    <span>🔊 Suara Indonesia</span><span>📴 Offline</span><span>🚫 Tanpa Iklan</span><span>👆 Tombol Gede</span>
+  </div>
+
+  <div class="album-preview">
+    <div class="album-head"><h3>🏆 Album Stiker <span id="albumProgress">0/10</span></h3><span class="album-hint">Dapet 1 tiap 3 benar</span></div>
+    <div id="albumGrid" class="album-grid"></div>
+    <p class="album-foot">Tip: Nyalakan suara Tab/HP, tap 🔊 kalau gak dengar</p>
+  </div>
+</section>
+
+<!-- GAME -->
+<section id="game" class="screen">
+  <div class="game-top">
+    <button class="btn-pill back" onclick="app.goHome()">← Menu</button>
+    <div class="progress-wrap">
+      <div class="progress"><div id="progressBar"></div></div>
+      <span id="progressText">1/10</span>
+    </div>
+    <button class="btn-pill sound" onclick="app.replayAudio()">🔊</button>
+  </div>
+
+  <div class="question-box">
+    <div class="q-mascot">🎧</div>
+    <div>
+      <div id="questionText" class="question-text">Mana huruf BA?</div>
+      <div id="questionHint" class="question-hint">Tap gambar yang benar ya!</div>
+    </div>
+  </div>
+
+  <div id="choices" class="choices"></div>
+  <div id="feedback" class="feedback hidden"></div>
+</section>
+
+<!-- RESULT -->
+<section id="result" class="screen">
+  <div class="result-box">
+    <div id="resultEmoji" class="result-emoji">🎉</div>
+    <h2 id="resultTitle">Hebat!</h2>
+    <p id="resultDesc">Kamu dapet 8 bintang!</p>
+    <div id="resultStars" class="result-stars"></div>
+    <div class="result-btns">
+      <button class="btn-primary" onclick="app.restart()">🔄 Main Lagi</button>
+      <button class="btn-secondary" onclick="app.goHome()">🎨 Ganti Tema</button>
+    </div>
+  </div>
+</section>
+
+<div id="lockOverlay" class="overlay hidden">
+  <div class="lock-box">
+    <div class="lock-emoji">🔒</div>
+    <h3>Menu Emak</h3>
+    <p>Ini area orang tua. Tap 5x logo untuk buka.</p>
+    <button class="btn-primary" onclick="app.goHome()">Kembali</button>
+  </div>
+</div>
+
+<audio id="audioPlayer" preload="auto"></audio>
+<script src="js/howler.min.js"></script>
+<script src="js/engine.js"></script>
+</body>
+</html>

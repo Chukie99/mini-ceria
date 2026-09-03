@@ -1,9 +1,6 @@
 {
   "appId": "com.sopian.miniceria",
-  "appName": "Mini Ceria - Hijaiyah & Hewan",
-  "webDir": ".",
-  "bundledWebRuntime": false,
-  "server": {
-    "androidScheme": "https"
-  }
+  "appName": "Mini Ceria",
+  "webDir": "www",
+  "bundledWebRuntime": false
 }

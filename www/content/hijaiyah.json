@@ -1,0 +1,117 @@
+{
+  "title": "Hijaiyah Ceria - Level 1",
+  "voice": "id-ID-GadisNeural",
+  "questions": [
+    {
+      "id": 1,
+      "prompt_text": "Yang mana huruf Ba?",
+      "audio": "assets/audio/hijaiyah_mana_ba.mp3",
+      "choices": [
+        {"img": "assets/img/hijaiyah_ba.png", "label": "Ba"},
+        {"img": "assets/img/hijaiyah_ta.png", "label": "Ta"},
+        {"img": "assets/img/hijaiyah_tsa.png", "label": "Tsa"}
+      ],
+      "correct": 0,
+      "hint": "Huruf Ba ada titik satu di bawah"
+    },
+    {
+      "id": 2,
+      "prompt_text": "Yang mana huruf Alif?",
+      "audio": "assets/audio/hijaiyah_mana_alif.mp3",
+      "choices": [
+        {"img": "assets/img/hijaiyah_ta.png", "label": "Ta"},
+        {"img": "assets/img/hijaiyah_alif.png", "label": "Alif"},
+        {"img": "assets/img/hijaiyah_jim.png", "label": "Jim"}
+      ],
+      "correct": 1
+    },
+    {
+      "id": 3,
+      "prompt_text": "Yang mana huruf Tsa?",
+      "audio": "assets/audio/hijaiyah_mana_tsa.mp3",
+      "choices": [
+        {"img": "assets/img/hijaiyah_ba.png", "label": "Ba"},
+        {"img": "assets/img/hijaiyah_kha.png", "label": "Kha"},
+        {"img": "assets/img/hijaiyah_tsa.png", "label": "Tsa"}
+      ],
+      "correct": 2
+    },
+    {
+      "id": 4,
+      "prompt_text": "Yang mana huruf Jim?",
+      "audio": "assets/audio/hijaiyah_mana_jim.mp3",
+      "choices": [
+        {"img": "assets/img/hijaiyah_jim.png", "label": "Jim"},
+        {"img": "assets/img/hijaiyah_alif.png", "label": "Alif"},
+        {"img": "assets/img/hijaiyah_ta.png", "label": "Ta"}
+      ],
+      "correct": 0
+    },
+    {
+      "id": 5,
+      "prompt_text": "Yang mana huruf Ta?",
+      "audio": "assets/audio/hijaiyah_mana_ta.mp3",
+      "choices": [
+        {"img": "assets/img/hijaiyah_tsa.png", "label": "Tsa"},
+        {"img": "assets/img/hijaiyah_ba.png", "label": "Ba"},
+        {"img": "assets/img/hijaiyah_ta.png", "label": "Ta"}
+      ],
+      "correct": 2
+    },
+    {
+      "id": 6,
+      "prompt_text": "Yang mana huruf Kha?",
+      "audio": "assets/audio/hijaiyah_mana_kha.mp3",
+      "choices": [
+        {"img": "assets/img/hijaiyah_jim.png", "label": "Jim"},
+        {"img": "assets/img/hijaiyah_kha.png", "label": "Kha"},
+        {"img": "assets/img/hijaiyah_alif.png", "label": "Alif"}
+      ],
+      "correct": 1
+    },
+    {
+      "id": 7,
+      "prompt_text": "Yang mana huruf Ba?",
+      "audio": "assets/audio/hijaiyah_mana_ba.mp3",
+      "choices": [
+        {"img": "assets/img/hijaiyah_kha.png", "label": "Kha"},
+        {"img": "assets/img/hijaiyah_ba.png", "label": "Ba"},
+        {"img": "assets/img/hijaiyah_jim.png", "label": "Jim"}
+      ],
+      "correct": 1
+    },
+    {
+      "id": 8,
+      "prompt_text": "Yang mana huruf Alif?",
+      "audio": "assets/audio/hijaiyah_mana_alif.mp3",
+      "choices": [
+        {"img": "assets/img/hijaiyah_alif.png", "label": "Alif"},
+        {"img": "assets/img/hijaiyah_tsa.png", "label": "Tsa"},
+        {"img": "assets/img/hijaiyah_ta.png", "label": "Ta"}
+      ],
+      "correct": 0
+    },
+    {
+      "id": 9,
+      "prompt_text": "Yang mana huruf Tsa?",
+      "audio": "assets/audio/hijaiyah_mana_tsa.mp3",
+      "choices": [
+        {"img": "assets/img/hijaiyah_tsa.png", "label": "Tsa"},
+        {"img": "assets/img/hijaiyah_ba.png", "label": "Ba"},
+        {"img": "assets/img/hijaiyah_alif.png", "label": "Alif"}
+      ],
+      "correct": 0
+    },
+    {
+      "id": 10,
+      "prompt_text": "Yang mana huruf Jim?",
+      "audio": "assets/audio/hijaiyah_mana_jim.mp3",
+      "choices": [
+        {"img": "assets/img/hijaiyah_ta.png", "label": "Ta"},
+        {"img": "assets/img/hijaiyah_kha.png", "label": "Kha"},
+        {"img": "assets/img/hijaiyah_jim.png", "label": "Jim"}
+      ],
+      "correct": 2
+    }
+  ]
+}

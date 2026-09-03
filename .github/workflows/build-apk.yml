@@ -20,12 +20,31 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      - name: Install Capacitor
+      - name: Install Capacitor & prepare www
         run: |
           npm init -y
           npm i @capacitor/core @capacitor/cli @capacitor/android
-          npx cap init "Mini Ceria" com.sopian.miniceria --web-dir="." || true
-          npx cap add android
+          mkdir -p www
+          cp -r index.html css js assets content www/ 2>/dev/null || true
+          echo "www contents:" && ls -R www | head -n 40
+          cat capacitor.config.json
+
+      - name: Init Capacitor (skip if exists)
+        run: |
+          if [ ! -f "capacitor.config.json" ]; then
+            npx cap init "Mini Ceria" com.sopian.miniceria --web-dir="www"
+          else
+            echo "capacitor.config.json already exists"
+            cat capacitor.config.json
+          fi
+
+      - name: Add Android platform
+        run: |
+          if [ ! -d "android" ]; then
+            npx cap add android
+          else
+            echo "android already exists"
+          fi
 
       - name: Sync web assets to Android
         run: npx cap sync android
