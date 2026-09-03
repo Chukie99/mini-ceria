@@ -724,7 +724,7 @@ function confetti(opts){
                     osc.frequency.setValueAtTime(659.25, now + 0.08);
                     osc.frequency.setValueAtTime(783.99, now + 0.16);
                     osc.frequency.setValueAtTime(1046.50, now + 0.24);
-                    gain.gain.setValueAtTime(0.3, now);
+                    gain.gain.setValueAtTime(0.8, now);
                     gain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
                     osc.start(now);
                     osc.stop(now + 0.5);
@@ -733,7 +733,7 @@ function confetti(opts){
                     osc.type = 'triangle';
                     osc.frequency.setValueAtTime(220, now);
                     osc.frequency.exponentialRampToValueAtTime(110, now + 0.25);
-                    gain.gain.setValueAtTime(0.3, now);
+                    gain.gain.setValueAtTime(0.8, now);
                     gain.gain.exponentialRampToValueAtTime(0.01, now + 0.25);
                     osc.start(now);
                     osc.stop(now + 0.25);
@@ -742,7 +742,7 @@ function confetti(opts){
                     osc.type = 'sine';
                     osc.frequency.setValueAtTime(400, now);
                     osc.frequency.exponentialRampToValueAtTime(800, now + 0.05);
-                    gain.gain.setValueAtTime(0.15, now);
+                    gain.gain.setValueAtTime(0.45, now);
                     gain.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
                     osc.start(now);
                     osc.stop(now + 0.05);
@@ -761,8 +761,9 @@ function confetti(opts){
                 window.speechSynthesis.cancel();
                 const utterance = new SpeechSynthesisUtterance(text);
                 utterance.lang = isArabic ? 'ar-SA' : 'id-ID';
-                utterance.pitch = 1.25; // Friendly voice pitch
-                utterance.rate = 0.85;  // Kids pacing
+                utterance.volume = 1; // MAX volume
+                utterance.pitch = 1.3;
+                utterance.rate = 0.82;
                 window.speechSynthesis.speak(utterance);
             } catch(e) {
                 console.log('TTS Error:', e);
