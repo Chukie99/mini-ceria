@@ -72,13 +72,43 @@ jobs:
       - name: Sync web assets to Android
         run: npx cap sync android
 
-      - name: Build Debug APK
+      - name: Configure Release Signing
+        run: |
+          cp release.keystore android/app/release.keystore
+          echo "storeFile=release.keystore" > android/keystore.properties
+          echo "storePassword=duniapintar123" >> android/keystore.properties
+          echo "keyAlias=dunia-pintar" >> android/keystore.properties
+          echo "keyPassword=duniapintar123" >> android/keystore.properties
+          cat android/keystore.properties
+          # inject signingConfigs into app/build.gradle if not exists
+          if ! grep -q "signingConfigs" android/app/build.gradle; then
+            # add signingConfigs before buildTypes
+            sed -i '/buildTypes/i \    signingConfigs {\n        release {\n            def ksProps = new Properties()\n            def ksFile = rootProject.file("keystore.properties")\n            if (ksFile.exists()) ksProps.load(new FileInputStream(ksFile))\n            storeFile file(ksProps["storeFile"] ?: "release.keystore")\n            storePassword ksProps["storePassword"]\n            keyAlias ksProps["keyAlias"]\n            keyPassword ksProps["keyPassword"]\n        }\n    }' android/app/build.gradle
+            # set release buildType to use signingConfig
+            sed -i 's/signingConfig signingConfigs.debug/signingConfig signingConfigs.release/' android/app/build.gradle || true
+            sed -i '/release {/a \            signingConfig signingConfigs.release' android/app/build.gradle
+            echo "Patched build.gradle signing"
+          fi
+          cat android/app/build.gradle | grep -A 12 "signingConfigs" | head -n 30
+
+      - name: Build Release APK (signed)
         working-directory: android
         run: |
           chmod +x gradlew
-          ./gradlew assembleDebug
+          ./gradlew assembleRelease
+
+      - name: Build Debug APK (fallback)
+        working-directory: android
+        run: |
+          ./gradlew assembleDebug || true
 
       - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: DuniaPintar-release-apk
+          path: android/app/build/outputs/apk/release/app-release.apk
+
+      - name: Upload Debug APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: MiniCeria-debug-apk
