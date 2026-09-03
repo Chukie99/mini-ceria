@@ -171,3 +171,53 @@ header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.9);backdrop
 @media(max-width:420px){.choice img{width:100px;height:100px} .fallback-emoji{width:100px;height:100px}}
 .choice .label.hide{display:none}
 
+
+/* ===== v7 KID GEMOY ANTI-BOSAN ===== */
+@keyframes bob {0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)}}
+@keyframes wiggle {0%,100%{transform:rotate(0)} 25%{transform:rotate(-3deg)} 75%{transform:rotate(3deg)}}
+@keyframes pulseGlow {0%,100%{box-shadow:0 6px 0 var(--navy), 0 0 0 rgba(6,214,160,0)} 50%{box-shadow:0 6px 0 var(--navy), 0 0 22px rgba(6,214,160,.45)}}
+@keyframes twinkle {0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.7;transform:scale(1.08)}}
+@keyframes floatCloud {0%,100%{transform:translateX(0)} 50%{transform:translateX(10px)}}
+
+.mascot{animation:bob 2.2s ease-in-out infinite}
+.mascot.m2{animation-delay:.3s}
+.mascot.m3{animation-delay:.6s}
+.cloud{animation:floatCloud 6s ease-in-out infinite}
+.cloud.c2{animation-delay:1s}
+.cloud.c3{animation-delay:2s}
+
+.cat-card{transition:transform .18s cubic-bezier(.34,1.56,.64,1), box-shadow .18s; cursor:pointer}
+.cat-card:active{transform:scale(.97) rotate(-.5deg)}
+.cat-card:hover{transform:translateY(-4px) rotate(.6deg); box-shadow:0 10px 0 var(--navy), 0 12px 28px rgba(7,59,76,.18)}
+.cat-icon{animation:twinkle 2.8s ease-in-out infinite}
+.cat-card:nth-child(2) .cat-icon{animation-delay:.4s}
+.cat-card:nth-child(3) .cat-icon{animation-delay:.8s}
+
+.choices .choice{transition:transform .15s, box-shadow .15s, filter .15s; animation:pulseGlow 3s ease-in-out infinite}
+.choices .choice:active{transform:scale(.96)}
+.choices .choice.correct{animation:wiggle .45s ease}
+.choices .choice img{transition:transform .2s}
+.choices .choice:active img{transform:scale(1.04)}
+
+.progress{border-radius:99px; overflow:hidden; background:#E9EEF3; border:2px solid var(--navy)}
+#progressBar{background:linear-gradient(90deg, #06D6A0, #FFD23F); transition:width .5s cubic-bezier(.34,1.56,.64,1)}
+.progress-wrap #progressText{font-weight:900; color:var(--navy); background:var(--yellow); border:2px solid var(--navy); border-radius:99px; padding:2px 10px; box-shadow:0 3px 0 var(--navy)}
+
+.question-box{background:white; border:3px solid var(--navy); border-radius:20px; box-shadow:0 6px 0 var(--navy); padding:14px 16px}
+.q-mascot{animation:bob 1.8s ease-in-out infinite; font-size:28px}
+.feedback.ok{background:#06D6A0; color:white; border-color:var(--navy); animation:bob .6s ease}
+.feedback.no{background:#FFE8EC; border-color:var(--pink); color:var(--navy)}
+
+.result-box{animation:bob 2s ease-in-out infinite}
+.result-emoji{animation:wiggle 1.2s ease-in-out infinite}
+
+.splash-card{animation:bob 2.5s ease-in-out infinite}
+#splashProgress{background:linear-gradient(90deg, #118AB2, #06D6A0, #FFD23F)}
+
+.raport-card{transition:transform .2s}
+.raport-card:hover{transform:translateY(-3px)}
+
+.btn-primary:active, .btn-secondary:active{transform:scale(.96)}
+.btn-primary{background:linear-gradient(180deg, #118AB2, #073B4C); box-shadow:0 5px 0 #073B4C}
+.btn-primary:active{box-shadow:0 2px 0 #073B4C; transform:translateY(3px) scale(.98)}
+
