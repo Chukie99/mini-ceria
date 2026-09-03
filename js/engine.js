@@ -1,4 +1,8 @@
-const STORAGE_KEY = "mini_ceria_v1";
+const STORAGE_KEY = "mini_ceria_v2";
+const LICENSE_KEY = "mini_ceria_license";
+const RAPORT_KEY = "mini_ceria_raport_v2";
+const DEVICE_KEY = "mini_ceria_device_id";
+
 const state = {
   category: null,
   idx: 0,
@@ -7,31 +11,62 @@ const state = {
   stickers: JSON.parse(localStorage.getItem(STORAGE_KEY+"_stickers")||"[]"),
   questions: [],
   _howl: null,
-  _lockTaps: 0,
-  _lockTimer: null,
+  _tries: 0,
 };
 
-const STICKER_POOL = ["🦁","🐱","🐶","🦊","🐼","🐨","🐯","🦄","🚀","⭐","🌈","🍓","🐢","🦋","🐙"];
+// device id for anti-share
+function getDeviceId(){
+  let id = localStorage.getItem(DEVICE_KEY);
+  if(!id){ id = "DEV-"+Math.random().toString(36).slice(2,9).toUpperCase(); localStorage.setItem(DEVICE_KEY, id); }
+  return id;
+}
+getDeviceId();
+
+// Rapport helper
+function loadRaport(){
+  try{ return JSON.parse(localStorage.getItem(RAPORT_KEY)||"{}"); }catch(e){ return {}; }
+}
+function saveRaport(cat, score, total){
+  const r = loadRaport();
+  const prev = r[cat];
+  const pct = Math.round(score/total*100);
+  const entry = { score, total, pct, date: new Date().toLocaleDateString("id-ID"), best: Math.max(prev?.best||0, score) };
+  // keep history
+  entry.playCount = (prev?.playCount||0)+1;
+  r[cat] = entry;
+  localStorage.setItem(RAPORT_KEY, JSON.stringify(r));
+  return r;
+}
+
+const STICKER_POOL = ["🦁","🐱","🐶","🦊","🐼","🐨","🐯","🦄","🚀","⭐","🌈","🍓","🐢","🦋","🐙","🍎","🚗","🎨"];
 
 function el(id){return document.getElementById(id)}
 function showScreen(id){
   document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
-  el(id).classList.add("active");
+  const t = el(id);
+  if(t) t.classList.add("active");
+  // push history for back button
+  try{ history.pushState({screen:id}, "", "#"+id); }catch(e){}
 }
 
 function loadProgress(){
   el("starCount").textContent = "⭐ "+state.stars;
   el("stickerCount").textContent = "🏆 "+state.stickers.length;
-  el("albumProgress").textContent = state.stickers.length+"/10";
+  const ap = el("albumProgress"); if(ap) ap.textContent = state.stickers.length+"/10";
   const grid = el("albumGrid");
-  grid.innerHTML = "";
-  for(let i=0;i<10;i++){
-    const got = state.stickers[i];
-    const d = document.createElement("div");
-    d.className = "sticker"+(got?" got":"");
-    d.textContent = got || "🔒";
-    grid.appendChild(d);
+  if(grid){
+    grid.innerHTML = "";
+    for(let i=0;i<10;i++){
+      const got = state.stickers[i];
+      const d = document.createElement("div");
+      d.className = "sticker"+(got?" got":"");
+      d.textContent = got || "🔒";
+      grid.appendChild(d);
+    }
   }
+  // raport total
+  const rt = el("raportTotal");
+  if(rt) rt.textContent = "⭐ "+state.stars;
 }
 
 async function fetchContent(cat){
@@ -42,15 +77,21 @@ async function fetchContent(cat){
 
 function playAudio(src){
   const a = el("audioPlayer");
+  if(!a) return;
   a.src = src;
   a.currentTime = 0;
-  a.play().catch(()=>{});
+  a.play().catch(()=>{
+    // fallback TTS if file missing
+    const q = state.questions[state.idx];
+    if(q && q.prompt_text) speakFallback(q.prompt_text);
+  });
 }
 
 function speakFallback(text){
   if('speechSynthesis' in window){
+    try{ speechSynthesis.cancel(); }catch(e){}
     const u = new SpeechSynthesisUtterance(text);
-    u.lang = "id-ID"; u.rate = 0.9;
+    u.lang = "id-ID"; u.rate = 0.85; u.pitch = 1.15;
     speechSynthesis.speak(u);
   }
 }
@@ -71,6 +112,8 @@ function save(){
 function nextQuestion(){
   state.idx++;
   if(state.idx >= state.questions.length){
+    // save raport
+    saveRaport(state.category, state.score, state.questions.length);
     showResult();
     return;
   }
@@ -81,7 +124,7 @@ function showResult(){
   const total = state.questions.length;
   const pct = Math.round(state.score/total*100);
   let emoji="🎉", title="Hebat!", desc=`Kamu benar ${state.score} dari ${total} soal!`;
-  if(pct===100){emoji="🏆"; title="Sempurna!"; desc="Wah semua benar! Kamu pintar sekali!";}
+  if(pct===100){emoji="🏆"; title="SEMPURNA!"; desc="Wah semua benar! Kamu pintar sekali!";}
   else if(pct>=70){emoji="🌟"; title="Keren!";}
   else if(pct<50){emoji="💪"; title="Coba Lagi Ya!"; desc=`Benar ${state.score}/${total}. Yuk coba lagi biar dapet bintang!`;}
   el("resultEmoji").textContent=emoji;
@@ -89,7 +132,6 @@ function showResult(){
   el("resultDesc").textContent=desc;
   el("resultStars").textContent="⭐".repeat(state.score) + "☆".repeat(total-state.score);
   showScreen("result");
-  // reward sticker if score >=3
   if(state.score>=3 && state.stickers.length<10){
     const pool = STICKER_POOL.filter(s=>!state.stickers.includes(s));
     if(pool.length){ state.stickers.push(pool[0]); save(); }
@@ -107,29 +149,32 @@ function renderQuestion(){
 
   const wrap = el("choices");
   wrap.innerHTML="";
-  const cols = q.choices.length===2 ? "cols2" : q.choices.length===3 ? "cols3" : "cols2";
+  const cols = q.choices.length<=2 ? "cols2" : "cols3";
   wrap.className="choices "+cols;
   q.choices.forEach((c, i)=>{
     const btn = document.createElement("button");
     btn.className="choice";
     btn.onclick = ()=> handleTap(i);
-    // image
     const img = document.createElement("img");
     img.src = c.img;
     img.alt = c.label;
-    img.onerror = ()=>{ img.style.display="none"; };
+    img.onerror = ()=>{ img.style.display="none"; btn.querySelector(".fallback-emoji").style.display="flex"; };
+    const fallback = document.createElement("div");
+    fallback.className="fallback-emoji";
+    fallback.textContent = c.label.charAt(0);
+    fallback.style.display="none";
     const lab = document.createElement("div");
     lab.className="label"; lab.textContent=c.label;
-    btn.appendChild(img); btn.appendChild(lab);
+    btn.appendChild(img);
+    btn.appendChild(fallback);
+    btn.appendChild(lab);
     wrap.appendChild(btn);
   });
-  // auto play audio
-  const audioSrc = q.audio;
-  if(audioSrc){
-    playAudio(audioSrc);
-  } else if(q.prompt_text){
-    setTimeout(()=>speakFallback(q.prompt_text), 300);
-  }
+  // auto play audio with small delay
+  setTimeout(()=>{
+    if(q.audio) playAudio(q.audio);
+    else if(q.prompt_text) speakFallback(q.prompt_text);
+  }, 300);
 }
 
 function handleTap(choiceIdx){
@@ -140,7 +185,6 @@ function handleTap(choiceIdx){
   const picked = q.choices[choiceIdx];
   const correctChoice = q.choices[correct];
 
-  // disable further taps briefly
   el("choices").style.pointerEvents="none";
   setTimeout(()=> el("choices").style.pointerEvents="auto", 900);
 
@@ -150,11 +194,9 @@ function handleTap(choiceIdx){
     state.stars++;
     save();
     burstStar();
-    const okAudios = q.audio_ok ? [q.audio_ok] : ["assets/audio/yeay_benar.mp3","assets/audio/hore_pintar.mp3","assets/audio/masyaallah_keren.mp3"];
+    const okAudios = ["assets/audio/yeay_benar.mp3","assets/audio/hore_pintar.mp3","assets/audio/masyaallah_keren.mp3"];
     const pick = okAudios[Math.floor(Math.random()*okAudios.length)];
-    // try play picked, fallback to TTS
     playAudio(pick);
-    // also speak label if needed via fallback after 500ms
     const fb = el("feedback");
     fb.className="feedback ok";
     fb.textContent=" Yeay benar! Itu "+correctChoice.label+" ⭐";
@@ -162,20 +204,14 @@ function handleTap(choiceIdx){
     setTimeout(nextQuestion, 1400);
   } else {
     choicesEls[choiceIdx].classList.add("wrong");
-    // shake
     setTimeout(()=> choicesEls[choiceIdx].classList.remove("wrong"), 600);
     const fb = el("feedback");
     fb.className="feedback no";
-    // nyebutin nama yang salah biar anak belajar: "Ups itu huruf TA"
     fb.textContent = ` Ups itu ${picked.label}, coba lagi ya — mana ${correctChoice.label}?`;
     fb.classList.remove("hidden");
-    const tryAudio = q.audio_try || "assets/audio/coba_lagi.mp3";
-    playAudio(tryAudio);
-    // jangan auto next, biar anak coba lagi 1x, kalau masih salah baru kasih hint kedua dan next
-    // hit second try
+    playAudio("assets/audio/coba_lagi.mp3");
     q._tries = (q._tries||0)+1;
     if(q._tries>=2){
-      // highlight correct subtly after 2 fails
       setTimeout(()=>{
         choicesEls[correct].classList.add("correct");
         setTimeout(nextQuestion, 1200);
@@ -184,14 +220,56 @@ function handleTap(choiceIdx){
   }
 }
 
+// LICENSE
+function isLicensed(){
+  return localStorage.getItem(LICENSE_KEY) === "ACTIVATED" || localStorage.getItem(LICENSE_KEY)?.startsWith("CERIA-");
+}
+function validateLicense(code){
+  code = (code||"").toUpperCase().trim();
+  // simple offline validation: CERIA-XXXX-YYYY where YYYY = checksum of XXXX
+  // accept DEMO and any CERIA- prefix for now (offline 100%)
+  if(code === "DEMO" || code === "CERIA-DEMO" || code.startsWith("CERIA-")){
+    if(code.length >= 8){
+      // store device binding
+      localStorage.setItem(LICENSE_KEY, code);
+      localStorage.setItem(LICENSE_KEY+"_device", getDeviceId());
+      return true;
+    }
+  }
+  // also accept 6-char simple codes for ease (CERIA-1234)
+  if(code.length>=6 && code.includes("-")) return true;
+  return false;
+}
+
+// Splash
+function hideSplash(){
+  const s = el("splash");
+  if(s){ s.style.opacity="0"; s.style.transition="opacity .4s"; setTimeout(()=> s.remove(), 420); }
+}
+setTimeout(hideSplash, 1600);
+// progress bar animation
+let splashP = 0;
+const splashInt = setInterval(()=>{
+  splashP+=12;
+  const bar = el("splashProgress");
+  if(bar) bar.style.width = Math.min(splashP,100)+"%";
+  if(splashP>=100) clearInterval(splashInt);
+},120);
+
 const app = {
   async start(cat){
+    // license gate
+    if(!isLicensed()){
+      el("licenseOverlay").classList.remove("hidden");
+      // store pending cat
+      app._pendingCat = cat;
+      return;
+    }
     state.category=cat;
     state.idx=0; state.score=0;
     try{
       const data = await fetchContent(cat);
       state.questions = data.questions;
-      // shuffle choices? keep correct tracking - we keep order for learning
       showScreen("game");
       renderQuestion();
     }catch(e){
@@ -200,7 +278,8 @@ const app = {
   },
   goHome(){
     showScreen("home");
-    el("lockOverlay").classList.add("hidden");
+    const lo = el("lockOverlay"); if(lo) lo.classList.add("hidden");
+    loadProgress();
   },
   restart(){
     if(state.category) this.start(state.category);
@@ -211,16 +290,90 @@ const app = {
     if(!q) return;
     if(q.audio) playAudio(q.audio);
     else speakFallback(q.prompt_text||q.q);
+  },
+  openRaport(){
+    const r = loadRaport();
+    const grid = el("raportGrid");
+    const empty = el("raportEmpty");
+    if(grid){
+      grid.innerHTML="";
+      const cats = {hijaiyah:"ب Hijaiyah", alfabet:"Abc Alfabet", hewan:"🐱 Hewan", warna:"🎨 Warna", angka:"123 Angka", buah:"🍎 Buah", doa:"🤲 Doa Harian"};
+      let has=false;
+      for(const [k,label] of Object.entries(cats)){
+        const v = r[k];
+        if(v){
+          has=true;
+          const d = document.createElement("div");
+          d.className="raport-card";
+          const pctColor = v.pct>=80 ? "#06D6A0" : v.pct>=50 ? "#FFD23F" : "#EF476F";
+          d.innerHTML = `<div class="raport-cat">${label}</div><div class="raport-score" style="color:${pctColor}">${v.score}/${v.total} • ${v.pct}%</div><div class="raport-meta">Main ${v.playCount}x • ${v.date}</div><div class="raport-bar"><div style="width:${v.pct}%;background:${pctColor}"></div></div>`;
+          grid.appendChild(d);
+        }
+      }
+      if(has) empty.style.display="none"; else empty.style.display="block";
+    }
+    showScreen("raport");
+  },
+  resetRaport(){
+    if(confirm("Hapus semua data raport & bintang?")){
+      localStorage.removeItem(RAPORT_KEY);
+      localStorage.removeItem(STORAGE_KEY+"_stars");
+      localStorage.removeItem(STORAGE_KEY+"_stickers");
+      state.stars=0; state.stickers=[];
+      loadProgress();
+      this.openRaport();
+    }
+  },
+  checkLicense(){
+    const inp = el("licenseInput");
+    const err = el("licenseErr");
+    const code = inp.value.trim().toUpperCase();
+    if(validateLicense(code)){
+      // store activated
+      localStorage.setItem(LICENSE_KEY, code || "ACTIVATED");
+      el("licenseOverlay").classList.add("hidden");
+      err.classList.add("hidden");
+      if(app._pendingCat){ const c=app._pendingCat; app._pendingCat=null; app.start(c); }
+      else app.goHome();
+    } else {
+      err.textContent = "Kode salah. Contoh: CERIA-1234-ABCD. Hubungi penjual.";
+      err.classList.remove("hidden");
+    }
+  },
+  demoMode(){
+    localStorage.setItem(LICENSE_KEY, "CERIA-DEMO");
+    el("licenseOverlay").classList.add("hidden");
+    if(app._pendingCat){ const c=app._pendingCat; app._pendingCat=null; app.start(c); }
   }
 };
 
-// Lock Emak: tap logo 5x dalam 3 detik
+// back button handling - jangan langsung keluar
+window.addEventListener("popstate", (e)=>{
+  const active = document.querySelector(".screen.active");
+  if(active && active.id==="game"){
+    e.preventDefault();
+    app.goHome();
+    history.pushState({screen:"home"}, "", "#home");
+  }
+});
+// hardware back via capacitor
+document.addEventListener("backbutton", (e)=>{
+  e.preventDefault();
+  const active = document.querySelector(".screen.active");
+  if(active && active.id==="game"){ app.goHome(); }
+  else if(active && active.id==="home"){
+    if(confirm("Keluar dari Mini Ceria?")) navigator.app?.exitApp?.() || window.close();
+  } else app.goHome();
+}, false);
+
+// Lock Emak: tap logo 5x
 (function(){
-  let taps=0;
-  el("logoTap").addEventListener("click", ()=>{
+  let taps=0, timer=null;
+  const logo = el("logoTap");
+  if(logo) logo.addEventListener("click", ()=>{
     taps++;
-    clearTimeout(state._lockTimer);
-    state._lockTimer=setTimeout(()=>taps=0, 3000);
+    clearTimeout(timer);
+    timer=setTimeout(()=>taps=0, 3000);
     if(taps>=5){
       taps=0;
       el("lockOverlay").classList.remove("hidden");
@@ -230,3 +383,11 @@ const app = {
 
 // init
 loadProgress();
+// show license if not licensed (after splash)
+setTimeout(()=>{
+  if(!isLicensed()){
+    el("licenseOverlay").classList.remove("hidden");
+  }
+}, 1800);
+// push initial state
+try{ history.replaceState({screen:"home"}, "", "#home"); }catch(e){}

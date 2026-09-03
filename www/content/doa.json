@@ -1,0 +1,12 @@
+{
+  "title": "Doa Harian Anak",
+  "is_doa": true,
+  "questions": [
+    {"id":1,"prompt_text":"Mana doa mau makan?","audio":"assets/audio/doa_mana_makan.mp3","choices":[{"img":"assets/img/doa_makan.png","label":"Doa Makan"},{"img":"assets/img/doa_tidur.png","label":"Doa Tidur"},{"img":"assets/img/doa_keluar.png","label":"Doa Keluar Rumah"}],"correct":0, "hint":"Doa sebelum makan"},
+    {"id":2,"prompt_text":"Mana doa mau tidur?","audio":"assets/audio/doa_mana_tidur.mp3","choices":[{"img":"assets/img/doa_keluar.png","label":"Doa Keluar Rumah"},{"img":"assets/img/doa_tidur.png","label":"Doa Tidur"},{"img":"assets/img/doa_makan.png","label":"Doa Makan"}],"correct":1},
+    {"id":3,"prompt_text":"Mana doa keluar rumah?","audio":"assets/audio/doa_mana_keluar.mp3","choices":[{"img":"assets/img/doa_tidur.png","label":"Doa Tidur"},{"img":"assets/img/doa_makan.png","label":"Doa Makan"},{"img":"assets/img/doa_keluar.png","label":"Doa Keluar Rumah"}],"correct":2},
+    {"id":4,"prompt_text":"Mana doa mau makan?","audio":"assets/audio/doa_mana_makan.mp3","choices":[{"img":"assets/img/doa_keluar.png","label":"Doa Keluar Rumah"},{"img":"assets/img/doa_makan.png","label":"Doa Makan"},{"img":"assets/img/doa_tidur.png","label":"Doa Tidur"}],"correct":1},
+    {"id":5,"prompt_text":"Mana doa mau tidur?","audio":"assets/audio/doa_mana_tidur.mp3","choices":[{"img":"assets/img/doa_tidur.png","label":"Doa Tidur"},{"img":"assets/img/doa_makan.png","label":"Doa Makan"},{"img":"assets/img/doa_keluar.png","label":"Doa Keluar Rumah"}],"correct":0},
+    {"id":6,"prompt_text":"Mana doa keluar rumah?","audio":"assets/audio/doa_mana_keluar.mp3","choices":[{"img":"assets/img/doa_makan.png","label":"Doa Makan"},{"img":"assets/img/doa_keluar.png","label":"Doa Keluar Rumah"},{"img":"assets/img/doa_tidur.png","label":"Doa Tidur"}],"correct":1}
+  ]
+}

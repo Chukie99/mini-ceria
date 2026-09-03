@@ -1,0 +1,11 @@
+{
+  "title": "Buah Ceria",
+  "questions": [
+    {"id":1,"prompt_text":"Mana buah apel?","audio":"assets/audio/buah_mana_apel.mp3","choices":[{"img":"assets/img/buah_apel.png","label":"Apel"},{"img":"assets/img/buah_pisang.png","label":"Pisang"},{"img":"assets/img/buah_mangga.png","label":"Mangga"}],"correct":0},
+    {"id":2,"prompt_text":"Mana buah pisang?","audio":"assets/audio/buah_mana_pisang.mp3","choices":[{"img":"assets/img/buah_mangga.png","label":"Mangga"},{"img":"assets/img/buah_pisang.png","label":"Pisang"},{"img":"assets/img/buah_apel.png","label":"Apel"}],"correct":1},
+    {"id":3,"prompt_text":"Mana buah mangga?","audio":"assets/audio/buah_mana_mangga.mp3","choices":[{"img":"assets/img/buah_apel.png","label":"Apel"},{"img":"assets/img/buah_mangga.png","label":"Mangga"},{"img":"assets/img/buah_pisang.png","label":"Pisang"}],"correct":1},
+    {"id":4,"prompt_text":"Mana buah apel?","audio":"assets/audio/buah_mana_apel.mp3","choices":[{"img":"assets/img/buah_pisang.png","label":"Pisang"},{"img":"assets/img/buah_apel.png","label":"Apel"},{"img":"assets/img/buah_mangga.png","label":"Mangga"}],"correct":1},
+    {"id":5,"prompt_text":"Mana buah pisang?","audio":"assets/audio/buah_mana_pisang.mp3","choices":[{"img":"assets/img/buah_apel.png","label":"Apel"},{"img":"assets/img/buah_mangga.png","label":"Mangga"},{"img":"assets/img/buah_pisang.png","label":"Pisang"}],"correct":2},
+    {"id":6,"prompt_text":"Mana buah mangga?","audio":"assets/audio/buah_mana_mangga.mp3","choices":[{"img":"assets/img/buah_mangga.png","label":"Mangga"},{"img":"assets/img/buah_apel.png","label":"Apel"},{"img":"assets/img/buah_pisang.png","label":"Pisang"}],"correct":0}
+  ]
+}

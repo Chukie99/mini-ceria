@@ -1,0 +1,11 @@
+{
+  "title": "Angka Ceria 1-5",
+  "questions": [
+    {"id":1,"prompt_text":"Mana angka satu?","audio":"assets/audio/angka_mana_1.mp3","choices":[{"img":"assets/img/angka_1.png","label":"1"},{"img":"assets/img/angka_2.png","label":"2"},{"img":"assets/img/angka_3.png","label":"3"}],"correct":0},
+    {"id":2,"prompt_text":"Mana angka dua?","audio":"assets/audio/angka_mana_2.mp3","choices":[{"img":"assets/img/angka_3.png","label":"3"},{"img":"assets/img/angka_2.png","label":"2"},{"img":"assets/img/angka_5.png","label":"5"}],"correct":1},
+    {"id":3,"prompt_text":"Mana angka tiga? Ayo cari angka tiga!","audio":"assets/audio/angka_mana_3.mp3","choices":[{"img":"assets/img/angka_1.png","label":"1"},{"img":"assets/img/angka_5.png","label":"5"},{"img":"assets/img/angka_3.png","label":"3"}],"correct":2},
+    {"id":4,"prompt_text":"Mana angka lima?","audio":"assets/audio/angka_mana_5.mp3","choices":[{"img":"assets/img/angka_5.png","label":"5"},{"img":"assets/img/angka_1.png","label":"1"},{"img":"assets/img/angka_2.png","label":"2"}],"correct":0},
+    {"id":5,"prompt_text":"Mana angka dua?","audio":"assets/audio/angka_mana_2.mp3","choices":[{"img":"assets/img/angka_1.png","label":"1"},{"img":"assets/img/angka_2.png","label":"2"},{"img":"assets/img/angka_3.png","label":"3"}],"correct":1},
+    {"id":6,"prompt_text":"Mana angka satu?","audio":"assets/audio/angka_mana_1.mp3","choices":[{"img":"assets/img/angka_5.png","label":"5"},{"img":"assets/img/angka_3.png","label":"3"},{"img":"assets/img/angka_1.png","label":"1"}],"correct":2}
+  ]
+}

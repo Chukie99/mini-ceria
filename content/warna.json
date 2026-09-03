@@ -1,0 +1,11 @@
+{
+  "title": "Warna Ceria",
+  "questions": [
+    {"id":1,"prompt_text":"Mana warna merah? Ayo cari warna merah!","audio":"assets/audio/warna_mana_merah.mp3","choices":[{"img":"assets/img/warna_merah.png","label":"Merah"},{"img":"assets/img/warna_biru.png","label":"Biru"},{"img":"assets/img/warna_kuning.png","label":"Kuning"}],"correct":0},
+    {"id":2,"prompt_text":"Mana warna biru?","audio":"assets/audio/warna_mana_biru.mp3","choices":[{"img":"assets/img/warna_kuning.png","label":"Kuning"},{"img":"assets/img/warna_biru.png","label":"Biru"},{"img":"assets/img/warna_hijau.png","label":"Hijau"}],"correct":1},
+    {"id":3,"prompt_text":"Mana warna kuning?","audio":"assets/audio/warna_mana_kuning.mp3","choices":[{"img":"assets/img/warna_hijau.png","label":"Hijau"},{"img":"assets/img/warna_merah.png","label":"Merah"},{"img":"assets/img/warna_kuning.png","label":"Kuning"}],"correct":2},
+    {"id":4,"prompt_text":"Mana warna hijau?","audio":"assets/audio/warna_mana_hijau.mp3","choices":[{"img":"assets/img/warna_hijau.png","label":"Hijau"},{"img":"assets/img/warna_biru.png","label":"Biru"},{"img":"assets/img/warna_merah.png","label":"Merah"}],"correct":0},
+    {"id":5,"prompt_text":"Mana warna merah?","audio":"assets/audio/warna_mana_merah.mp3","choices":[{"img":"assets/img/warna_biru.png","label":"Biru"},{"img":"assets/img/warna_merah.png","label":"Merah"},{"img":"assets/img/warna_hijau.png","label":"Hijau"}],"correct":1},
+    {"id":6,"prompt_text":"Mana warna kuning?","audio":"assets/audio/warna_mana_kuning.mp3","choices":[{"img":"assets/img/warna_kuning.png","label":"Kuning"},{"img":"assets/img/warna_hijau.png","label":"Hijau"},{"img":"assets/img/warna_biru.png","label":"Biru"}],"correct":0}
+  ]
+}

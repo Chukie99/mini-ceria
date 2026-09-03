@@ -3,108 +3,106 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="theme-color" content="#FFB703">
-<title>Mini Ceria - Hijaiyah Alfabet Hewan</title>
+<meta name="theme-color" content="#FFD23F">
+<title>Mini Ceria</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Fredoka:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<!-- SPLASH CANTIK -->
+<div id="splash" class="splash">
+  <div class="splash-card">
+    <div class="splash-icon">🌟</div>
+    <div class="splash-title">Mini Ceria</div>
+    <div class="splash-sub">Hijaiyah • Alfabet • Hewan • Doa</div>
+    <div class="splash-bar"><div id="splashProgress"></div></div>
+    <div class="splash-tip">Memuat suara & gambar...</div>
+  </div>
+</div>
+
+<!-- LICENSE GATE -->
+<div id="licenseOverlay" class="overlay hidden">
+  <div class="lock-box license-box">
+    <div class="lock-emoji">🔑</div>
+    <h3>Aktivasi Mini Ceria</h3>
+    <p>Masukkan kode lisensi dari penjual.<br><span class="small">1 kode = 1 HP/Tab. Jangan dishare ya!</span></p>
+    <input id="licenseInput" type="text" placeholder="Contoh: CERIA-1234-ABCD" maxlength="19">
+    <button class="btn-primary" onclick="app.checkLicense()">Aktifkan Sekarang</button>
+    <p class="license-help">Belum punya kode? Chat penjual di Lynk.id/SociaBuzz.</p>
+    <p id="licenseErr" class="license-err hidden"></p>
+    <button class="btn-secondary" onclick="app.demoMode()">Coba Demo (3 Soal)</button>
+  </div>
+</div>
+
 <div class="bg-decor" aria-hidden="true"><span class="cloud c1"></span><span class="cloud c2"></span><span class="cloud c3"></span></div>
 
 <header id="header">
   <div class="logo" id="logoTap"><span class="logo-icon">🌟</span> Mini Ceria</div>
-  <div class="stars"><span class="pill star-pill" id="starCount">⭐ 0</span><span class="pill trophy-pill" id="stickerCount">🏆 0</span></div>
+  <div class="stars"><span class="pill star-pill" id="starCount">⭐ 0</span><span class="pill trophy-pill" id="stickerCount">🏆 0</span><button class="pill raport-pill" onclick="app.openRaport()">📊</button></div>
 </header>
 
-<!-- HOME -->
 <section id="home" class="screen active">
   <div class="hero">
     <div class="hero-badge">✨ Untuk Anak 1–5 Tahun • 100% Offline • Bebas Iklan</div>
     <h1>Belajar Sambil <span class="hl">Main!</span></h1>
     <p class="hero-sub">Semua pakai <b>suara</b> — anak belum bisa baca tetap bisa. Emak pilih tema, anak tinggal TAP gambar gede.</p>
-    <div class="mascot-row">
-      <span class="mascot">🧒</span><span class="mascot m2">🐱</span><span class="mascot m3">📚</span>
-    </div>
+    <div class="mascot-row"><span class="mascot">🧒</span><span class="mascot m2">🐱</span><span class="mascot m3">📚</span></div>
   </div>
 
   <h2 class="section-title">Pilih Tema Belajar 👇 <span>Emak yang pencet</span></h2>
   <div class="grid3">
-    <button class="cat-card hijaiyah" onclick="app.start('hijaiyah')">
-      <div class="cat-top"><span class="cat-icon">ب</span><span class="cat-badge">10 Soal</span></div>
-      <div class="cat-title">Hijaiyah</div>
-      <div class="cat-desc">Alif – Kha • Tap + Suara</div>
-      <div class="cat-arrow">Main →</div>
-    </button>
-    <button class="cat-card alfabet" onclick="app.start('alfabet')">
-      <div class="cat-top"><span class="cat-icon">Abc</span><span class="cat-badge">10 Soal</span></div>
-      <div class="cat-title">Alfabet</div>
-      <div class="cat-desc">A – F • Huruf Besar</div>
-      <div class="cat-arrow">Main →</div>
-    </button>
-    <button class="cat-card hewan" onclick="app.start('hewan')">
-      <div class="cat-top"><span class="cat-icon">🐱</span><span class="cat-badge">10 Soal</span></div>
-      <div class="cat-title">Hewan</div>
-      <div class="cat-desc">Kucing – Kelinci • Gambar</div>
-      <div class="cat-arrow">Main →</div>
-    </button>
+    <button class="cat-card hijaiyah" onclick="app.start('hijaiyah')"><div class="cat-top"><span class="cat-icon">ب</span><span class="cat-badge">10 Soal</span></div><div class="cat-title">Hijaiyah</div><div class="cat-desc">Alif – Kha • Suara</div><div class="cat-arrow">Main →</div></button>
+    <button class="cat-card alfabet" onclick="app.start('alfabet')"><div class="cat-top"><span class="cat-icon">Abc</span><span class="cat-badge">10 Soal</span></div><div class="cat-title">Alfabet</div><div class="cat-desc">A – F • Huruf Besar</div><div class="cat-arrow">Main →</div></button>
+    <button class="cat-card hewan" onclick="app.start('hewan')"><div class="cat-top"><span class="cat-icon">🐱</span><span class="cat-badge">10 Soal</span></div><div class="cat-title">Hewan</div><div class="cat-desc">Kucing – Kelinci</div><div class="cat-arrow">Main →</div></button>
+    <button class="cat-card warna" onclick="app.start('warna')"><div class="cat-top"><span class="cat-icon" style="background:#FFD23F">🎨</span><span class="cat-badge">6 Soal</span></div><div class="cat-title">Warna</div><div class="cat-desc">Merah Biru Kuning Hijau</div><div class="cat-arrow" style="background:#FFD23F">Main →</div></button>
+    <button class="cat-card angka" onclick="app.start('angka')"><div class="cat-top"><span class="cat-icon">123</span><span class="cat-badge">6 Soal</span></div><div class="cat-title">Angka</div><div class="cat-desc">1 – 5 • Berhitung</div><div class="cat-arrow" style="background:#06D6A0;color:#fff">Main →</div></button>
+    <button class="cat-card buah" onclick="app.start('buah')"><div class="cat-top"><span class="cat-icon">🍎</span><span class="cat-badge">6 Soal</span></div><div class="cat-title">Buah</div><div class="cat-desc">Apel Pisang Mangga</div><div class="cat-arrow" style="background:#FF8FA3;color:#fff">Main →</div></button>
+    <button class="cat-card doa" onclick="app.start('doa')"><div class="cat-top"><span class="cat-icon">🤲</span><span class="cat-badge">3 Doa</span></div><div class="cat-title">Doa Harian</div><div class="cat-desc">Makan Tidur Keluar Rumah</div><div class="cat-arrow" style="background:#E9D5FF">Main →</div></button>
   </div>
 
-  <div class="trust">
-    <span>🔊 Suara Indonesia</span><span>📴 Offline</span><span>🚫 Tanpa Iklan</span><span>👆 Tombol Gede</span>
-  </div>
+  <div class="trust"><span>🔊 Suara Indonesia</span><span>📴 Offline</span><span>🚫 Tanpa Iklan</span><span>👆 Tombol Gede</span><span>📊 Raport</span></div>
 
   <div class="album-preview">
     <div class="album-head"><h3>🏆 Album Stiker <span id="albumProgress">0/10</span></h3><span class="album-hint">Dapet 1 tiap 3 benar</span></div>
     <div id="albumGrid" class="album-grid"></div>
-    <p class="album-foot">Tip: Nyalakan suara Tab/HP, tap 🔊 kalau gak dengar</p>
+    <p class="album-foot">Nyalakan suara Tab/HP, tap 🔊 kalau gak dengar • Tap logo 5x untuk Menu Emak</p>
   </div>
 </section>
 
-<!-- GAME -->
 <section id="game" class="screen">
   <div class="game-top">
     <button class="btn-pill back" onclick="app.goHome()">← Menu</button>
-    <div class="progress-wrap">
-      <div class="progress"><div id="progressBar"></div></div>
-      <span id="progressText">1/10</span>
-    </div>
+    <div class="progress-wrap"><div class="progress"><div id="progressBar"></div></div><span id="progressText">1/10</span></div>
     <button class="btn-pill sound" onclick="app.replayAudio()">🔊</button>
   </div>
-
-  <div class="question-box">
-    <div class="q-mascot">🎧</div>
-    <div>
-      <div id="questionText" class="question-text">Mana huruf BA?</div>
-      <div id="questionHint" class="question-hint">Tap gambar yang benar ya!</div>
-    </div>
-  </div>
-
+  <div class="question-box"><div class="q-mascot">🎧</div><div><div id="questionText" class="question-text">Mana huruf BA?</div><div id="questionHint" class="question-hint">Tap gambar yang benar ya!</div></div></div>
   <div id="choices" class="choices"></div>
   <div id="feedback" class="feedback hidden"></div>
 </section>
 
-<!-- RESULT -->
 <section id="result" class="screen">
   <div class="result-box">
     <div id="resultEmoji" class="result-emoji">🎉</div>
     <h2 id="resultTitle">Hebat!</h2>
     <p id="resultDesc">Kamu dapet 8 bintang!</p>
     <div id="resultStars" class="result-stars"></div>
-    <div class="result-btns">
-      <button class="btn-primary" onclick="app.restart()">🔄 Main Lagi</button>
-      <button class="btn-secondary" onclick="app.goHome()">🎨 Ganti Tema</button>
-    </div>
+    <div class="result-btns"><button class="btn-primary" onclick="app.restart()">🔄 Main Lagi</button><button class="btn-secondary" onclick="app.goHome()">🎨 Ganti Tema</button><button class="btn-secondary" onclick="app.openRaport()">📊 Lihat Raport</button></div>
   </div>
 </section>
 
-<div id="lockOverlay" class="overlay hidden">
-  <div class="lock-box">
-    <div class="lock-emoji">🔒</div>
-    <h3>Menu Emak</h3>
-    <p>Ini area orang tua. Tap 5x logo untuk buka.</p>
-    <button class="btn-primary" onclick="app.goHome()">Kembali</button>
+<section id="raport" class="screen">
+  <div class="raport-box">
+    <h2>📊 Raport Penilaian</h2>
+    <p class="raport-sub">Penyimpanan lokal di HP ini • Buat Emak pantau</p>
+    <div id="raportGrid" class="raport-grid"></div>
+    <div id="raportEmpty" class="raport-empty">Belum ada nilai. Main 1 tema dulu ya!</div>
+    <div class="raport-total"><span>Total Bintang</span><b id="raportTotal">⭐ 0</b></div>
+    <div class="raport-btns"><button class="btn-primary" onclick="app.goHome()">Kembali ke Menu</button><button class="btn-secondary" onclick="app.resetRaport()">🗑️ Reset Data</button></div>
+    <p class="small" style="text-align:center;color:#7A8A9A;margin-top:8px;font-size:10px">Data disimpan offline di HP ini. Ganti HP = data baru.</p>
   </div>
-</div>
+</section>
+
+<div id="lockOverlay" class="overlay hidden"><div class="lock-box"><div class="lock-emoji">🔒</div><h3>Menu Emak</h3><p>Area orang tua. Tap 5x logo untuk buka.</p><button class="btn-primary" onclick="app.goHome()">Kembali</button></div></div>
 
 <audio id="audioPlayer" preload="auto"></audio>
 <script src="js/howler.min.js"></script>

@@ -46,6 +46,28 @@ jobs:
             echo "android already exists"
           fi
 
+      - name: Apply custom icon to Android (if icon-*.png exists)
+        run: |
+          echo "Applying custom icons..."
+          for res in "mipmap-hdpi:72" "mipmap-mdpi:48" "mipmap-xhdpi:96" "mipmap-xxhdpi:144" "mipmap-xxxhdpi:192"; do
+            folder="${res%%:*}"
+            size="${res##*:}"
+            src="icon-${size}.png"
+            dst="android/app/src/main/res/${folder}/ic_launcher.png"
+            dst2="android/app/src/main/res/${folder}/ic_launcher_round.png"
+            if [ -f "$src" ]; then
+              echo "Copy $src -> $dst"
+              cp "$src" "$dst"
+              cp "$src" "$dst2"
+            fi
+          done
+          # also splash
+          if [ -f "splash-port.png" ]; then
+            mkdir -p android/app/src/main/res/drawable
+            cp splash-port.png android/app/src/main/res/drawable/splash.png || true
+          fi
+          ls -lh android/app/src/main/res/mipmap-*/* 2>&1 | head -n 20
+
       - name: Sync web assets to Android
         run: npx cap sync android
 
