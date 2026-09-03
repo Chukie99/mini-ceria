@@ -1,0 +1,15 @@
+{
+  "title": "Hewan Ceria - Tebak Gambar",
+  "questions": [
+    {"id":1,"prompt_text":"Mana hewan kucing?","audio":"assets/audio/hewan_mana_kucing.mp3","choices":[{"img":"assets/img/hewan_kucing.png","label":"Kucing"},{"img":"assets/img/hewan_anjing.png","label":"Anjing"},{"img":"assets/img/hewan_kuda.png","label":"Kuda"}],"correct":0},
+    {"id":2,"prompt_text":"Mana hewan anjing?","audio":"assets/audio/hewan_mana_anjing.mp3","choices":[{"img":"assets/img/hewan_kuda.png","label":"Kuda"},{"img":"assets/img/hewan_anjing.png","label":"Anjing"},{"img":"assets/img/hewan_kucing.png","label":"Kucing"}],"correct":1},
+    {"id":3,"prompt_text":"Mana hewan kuda?","audio":"assets/audio/hewan_mana_kuda.mp3","choices":[{"img":"assets/img/hewan_sapi.png","label":"Sapi"},{"img":"assets/img/hewan_kuda.png","label":"Kuda"},{"img":"assets/img/hewan_ayam.png","label":"Ayam"}],"correct":1},
+    {"id":4,"prompt_text":"Mana hewan sapi?","audio":"assets/audio/hewan_mana_sapi.mp3","choices":[{"img":"assets/img/hewan_sapi.png","label":"Sapi"},{"img":"assets/img/hewan_kelinci.png","label":"Kelinci"},{"img":"assets/img/hewan_anjing.png","label":"Anjing"}],"correct":0},
+    {"id":5,"prompt_text":"Mana hewan ayam?","audio":"assets/audio/hewan_mana_ayam.mp3","choices":[{"img":"assets/img/hewan_kucing.png","label":"Kucing"},{"img":"assets/img/hewan_ayam.png","label":"Ayam"},{"img":"assets/img/hewan_kuda.png","label":"Kuda"}],"correct":1},
+    {"id":6,"prompt_text":"Mana hewan kelinci?","audio":"assets/audio/hewan_mana_kelinci.mp3","choices":[{"img":"assets/img/hewan_ayam.png","label":"Ayam"},{"img":"assets/img/hewan_kuda.png","label":"Kuda"},{"img":"assets/img/hewan_kelinci.png","label":"Kelinci"}],"correct":2},
+    {"id":7,"prompt_text":"Mana hewan kucing?","audio":"assets/audio/hewan_mana_kucing.mp3","choices":[{"img":"assets/img/hewan_kelinci.png","label":"Kelinci"},{"img":"assets/img/hewan_sapi.png","label":"Sapi"},{"img":"assets/img/hewan_kucing.png","label":"Kucing"}],"correct":2},
+    {"id":8,"prompt_text":"Mana hewan anjing?","audio":"assets/audio/hewan_mana_anjing.mp3","choices":[{"img":"assets/img/hewan_anjing.png","label":"Anjing"},{"img":"assets/img/hewan_ayam.png","label":"Ayam"},{"img":"assets/img/hewan_kuda.png","label":"Kuda"}],"correct":0},
+    {"id":9,"prompt_text":"Mana hewan sapi?","audio":"assets/audio/hewan_mana_sapi.mp3","choices":[{"img":"assets/img/hewan_sapi.png","label":"Sapi"},{"img":"assets/img/hewan_kucing.png","label":"Kucing"},{"img":"assets/img/hewan_kelinci.png","label":"Kelinci"}],"correct":0},
+    {"id":10,"prompt_text":"Mana hewan kuda?","audio":"assets/audio/hewan_mana_kuda.mp3","choices":[{"img":"assets/img/hewan_anjing.png","label":"Anjing"},{"img":"assets/img/hewan_sapi.png","label":"Sapi"},{"img":"assets/img/hewan_kuda.png","label":"Kuda"}],"correct":2}
+  ]
+}
