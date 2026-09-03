@@ -79,22 +79,33 @@ function playAudio(src){
   const a = el("audioPlayer");
   if(!a) return;
   const q = state.questions[state.idx];
-  const fallbackText = q ? (q.prompt_text||q.q) : "";
-  // robust fallback: both load error + play reject -> speechSynthesis (bukan baca HTML)
-  a.onerror = ()=>{ if(fallbackText) speakFallback(fallbackText); };
+  let fallbackText = q ? (q.prompt_text||q.q) : "";
+  // NEVER fallback with src if prompt missing
+  if(!fallbackText || /https?:/.test(fallbackText)) fallbackText = "Ayo cari jawaban yang benar ya!";
+  a.onerror = ()=>{ console.log("audio error", src); if(fallbackText) speakFallback(fallbackText); };
   try{ a.pause(); }catch(e){}
   a.src = src;
-  a.load();
+  try{ a.load(); }catch(e){}
   a.currentTime = 0;
   const p = a.play();
-  if(p && p.catch) p.catch(()=>{ if(fallbackText) speakFallback(fallbackText); });
+  if(p && p.catch) p.catch((e)=>{ console.log("play reject", src, e&&e.message); if(fallbackText) speakFallback(fallbackText); });
 }
 
 function speakFallback(text){
+  if(!text) return;
+  // sanitize: jangan pernah baca URL/html
+  text = String(text).replace(/https?:\/\/[^\s]+/gi, "").replace(/<[^>]+>/g, "").trim();
+  if(!text || text.length<2) return;
   if('speechSynthesis' in window){
     try{ speechSynthesis.cancel(); }catch(e){}
     const u = new SpeechSynthesisUtterance(text);
     u.lang = "id-ID"; u.rate = 0.85; u.pitch = 1.15;
+    // pilih voice Indonesia kalau ada
+    try{
+      const voices = speechSynthesis.getVoices();
+      const idVoice = voices.find(v=> v.lang && v.lang.toLowerCase().includes("id"));
+      if(idVoice) u.voice = idVoice;
+    }catch(e){}
     speechSynthesis.speak(u);
   }
 }
