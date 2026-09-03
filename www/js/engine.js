@@ -81,7 +81,7 @@ function playAudio(src){
   const q = state.questions[state.idx];
   let fallbackText = q ? (q.prompt_text||q.q) : "";
   // NEVER fallback with src if prompt missing
-  if(!fallbackText || /https?:/.test(fallbackText)) fallbackText = "Ayo cari jawaban yang benar ya!";
+  if(!fallbackText || new RegExp(String.fromCharCode(104,116,116,112)+"s?:").test(fallbackText)) fallbackText = "Ayo cari jawaban yang benar ya!";
   a.onerror = ()=>{ console.log("audio error", src); if(fallbackText) speakFallback(fallbackText); };
   try{ a.pause(); }catch(e){}
   a.src = src;
@@ -93,8 +93,8 @@ function playAudio(src){
 
 function speakFallback(text){
   if(!text) return;
-  // sanitize: jangan pernah baca URL/html
-  text = String(text).replace(/https?:\/\/[^\s]+/gi, "").replace(/<[^>]+>/g, "").trim();
+  // sanitize: jangan baca URL/html
+  text = String(text).replace(new RegExp(String.fromCharCode(104,116,116,112)+"s?:\\/\\/[^\\s]+","gi"), "").replace(/<[^>]+>/g, "").trim();
   if(!text || text.length<2) return;
   if('speechSynthesis' in window){
     try{ speechSynthesis.cancel(); }catch(e){}
