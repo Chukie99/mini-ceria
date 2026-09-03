@@ -58,7 +58,7 @@
     <button class="cat-card warna" onclick="app.start('warna')"><div class="cat-top"><span class="cat-icon" style="background:#FFD23F">🎨</span><span class="cat-badge">10 Soal</span></div><div class="cat-title">Warna</div><div class="cat-desc">Merah - Putih<div class="cat-arrow" style="background:#FFD23F">Main →</div></button>
     <button class="cat-card angka" onclick="app.start('angka')"><div class="cat-top"><span class="cat-icon">123</span><span class="cat-badge">11 Soal</span></div><div class="cat-title">Angka</div><div class="cat-desc">0 - 10 • Berhitung</div><div class="cat-arrow" style="background:#06D6A0;color:#fff">Main →</div></button>
     <button class="cat-card buah" onclick="app.start('buah')"><div class="cat-top"><span class="cat-icon">🍎</span><span class="cat-badge">9 Soal</span></div><div class="cat-title">Buah</div><div class="cat-desc">Apel - Alpukat<div class="cat-arrow" style="background:#FF8FA3;color:#fff">Main →</div></button>
-    <button class="cat-card doa" onclick="app.start('doa')"><div class="cat-top"><span class="cat-icon">🤲</span><span class="cat-badge">10 Soal</span></div><div class="cat-title">Doa Harian</div><div class="cat-desc">Makan, Tidur, Wudhu<div class="cat-arrow" style="background:#E9D5FF">Main →</div></button>
+    <button class="cat-card doa" onclick="app.start('doa')"><div class="cat-top"><span class="cat-icon">🤲</span><span class="cat-badge">6 Hafalan</span></div><div class="cat-title">Doa Harian</div><div class="cat-desc">Tap → dengar doa full<div class="cat-arrow" style="background:#E9D5FF">Hafalan →</div></button>
   </div>
 
   <div class="trust"><span>🔊 Suara Indonesia</span><span>📴 Offline</span><span>🚫 Tanpa Iklan</span><span>👆 Tombol Gede</span><span>📊 Raport</span></div>
@@ -79,6 +79,21 @@
   <div class="question-box"><div class="q-mascot">🎧</div><div><div id="questionText" class="question-text">Mana huruf BA?</div><div id="questionHint" class="question-hint">Tap gambar yang benar ya!</div></div></div>
   <div id="choices" class="choices"></div>
   <div id="feedback" class="feedback hidden"></div>
+</section>
+
+
+<section id="hafalan" class="screen">
+  <div class="game-top">
+    <button class="btn-pill back" onclick="app.goHome()">← Menu</button>
+    <div class="progress-wrap"><span class="pill" style="background:var(--yellow);border:2px solid var(--navy);font-weight:900">🤲 Hafalan</span></div>
+    <button class="btn-pill sound" onclick="app.stopHafalan()">⏹️</button>
+  </div>
+  <div class="hafalan-head">
+    <div class="q-mascot">🤲</div>
+    <div><div class="question-text">Tap doa untuk hafalan</div><div class="question-hint">Tap kartu → putar doa full + ulang otomatis. Anak dengerin & ikutin ya!</div></div>
+  </div>
+  <div id="hafalanGrid" class="hafalan-grid"></div>
+  <div class="hafalan-foot">🔊 Tap kartu untuk putar • ⏹️ untuk stop • Ulang 2x biar hafal</div>
 </section>
 
 <section id="result" class="screen">

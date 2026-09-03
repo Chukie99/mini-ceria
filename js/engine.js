@@ -272,10 +272,8 @@ const splashInt = setInterval(()=>{
 
 const app = {
   async start(cat){
-    // license gate
     if(!isLicensed()){
       el("licenseOverlay").classList.remove("hidden");
-      // store pending cat
       app._pendingCat = cat;
       return;
     }
@@ -283,6 +281,13 @@ const app = {
     state.idx=0; state.score=0;
     try{
       const data = await fetchContent(cat);
+      // HAFALAN DOA: bukan kuis, tapi tap hafal
+      if(data.is_hafalan && data.hafalan){
+        state.hafalan = data.hafalan;
+        app.renderHafalan(data.hafalan);
+        showScreen("hafalan");
+        return;
+      }
       state.questions = data.questions;
       showScreen("game");
       renderQuestion();
@@ -290,7 +295,58 @@ const app = {
       alert("Gagal load konten: "+e.message);
     }
   },
+  renderHafalan(list){
+    const grid = el("hafalanGrid");
+    if(!grid) return;
+    grid.innerHTML="";
+    list.forEach((d,i)=>{
+      const card = document.createElement("button");
+      card.className="hafalan-card";
+      card.id="hafalan-"+d.id;
+      card.onclick=()=> app.playHafalan(d.id);
+      card.innerHTML=`<div class="hafalan-icon">${d.icon}</div><div class="hafalan-title">${d.label}</div><div class="hafalan-arab">${d.arab}</div><div class="hafalan-latin">${d.latin}</div><div class="hafalan-arti">${d.arti}</div><span class="hafalan-hint">🔊 Tap untuk hafal</span>`;
+      grid.appendChild(card);
+    });
+  },
+  _hafalanAudio: null,
+  playHafalan(id){
+    const list = state.hafalan || [];
+    const d = list.find(x=>x.id===id);
+    if(!d) return;
+    // visual playing
+    document.querySelectorAll(".hafalan-card").forEach(c=>c.classList.remove("playing"));
+    const card = el("hafalan-"+id);
+    if(card) card.classList.add("playing");
+    // stop prev
+    try{ if(app._hafalanAudio){ app._hafalanAudio.pause(); } }catch(e){}
+    try{ speechSynthesis.cancel(); }catch(e){}
+    // play full doa 2x biar hafal
+    let playCount=0;
+    const playOnce=()=>{
+      playCount++;
+      const a = el("audioPlayer");
+      a.onended=()=>{
+        if(playCount<2){
+          setTimeout(playOnce, 600);
+        } else {
+          if(card) card.classList.remove("playing");
+        }
+      };
+      a.onerror=()=>{ if(card) card.classList.remove("playing"); speakFallback(d.arab+" . "+d.arti); };
+      a.src=d.audio;
+      try{ a.load(); }catch(e){}
+      const p=a.play();
+      if(p&&p.catch) p.catch(()=> speakFallback(d.latin));
+    };
+    playOnce();
+  },
+  stopHafalan(){
+    try{ el("audioPlayer").pause(); }catch(e){}
+    try{ speechSynthesis.cancel(); }catch(e){}
+    document.querySelectorAll(".hafalan-card").forEach(c=>c.classList.remove("playing"));
+  },
   goHome(){
+    try{ this.stopHafalan(); }catch(e){}
     showScreen("home");
     const lo = el("lockOverlay"); if(lo) lo.classList.add("hidden");
     loadProgress();
@@ -383,7 +439,7 @@ document.addEventListener("backbutton", (e)=>{
   const isPopupOpen = popup && !popup.classList.contains("hidden");
   if(isPopupOpen){ popup.classList.add("hidden"); return; }
   const active = document.querySelector(".screen.active");
-  if(active && active.id==="game"){ app.goHome(); }
+  if(active && (active.id==="game" || active.id==="hafalan")){ try{ app.stopHafalan(); }catch(e){} app.goHome(); }
   else if(active && active.id==="home"){
     popup.classList.remove("hidden");
   } else app.goHome();

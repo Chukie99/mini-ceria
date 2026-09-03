@@ -221,3 +221,18 @@ header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.9);backdrop
 .btn-primary{background:linear-gradient(180deg, #118AB2, #073B4C); box-shadow:0 5px 0 #073B4C}
 .btn-primary:active{box-shadow:0 2px 0 #073B4C; transform:translateY(3px) scale(.98)}
 
+/* HAFALAN DOA - tap hafal */
+.hafalan-head{display:flex;gap:12px;align-items:center;background:white;border:3px solid var(--navy);border-radius:20px;padding:14px 16px;box-shadow:0 6px 0 var(--navy);margin:14px}
+.hafalan-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 14px}
+@media(min-width:600px){.hafalan-grid{grid-template-columns:repeat(3,1fr)}}
+.hafalan-card{background:white;border:3px solid var(--navy);border-radius:20px;box-shadow:0 6px 0 var(--navy);padding:14px;text-align:center;cursor:pointer;transition:transform .15s, box-shadow .15s}
+.hafalan-card:active{transform:scale(.96) translateY(3px);box-shadow:0 2px 0 var(--navy)}
+.hafalan-card.playing{border-color:var(--green);box-shadow:0 6px 0 var(--green);background:#E6FFF6;animation:pulseGlow 1.2s ease-in-out infinite}
+.hafalan-icon{width:56px;height:56px;margin:0 auto 8px;background:var(--yellow);border:2px solid var(--navy);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px}
+.hafalan-title{font-family:'Fredoka',system-ui;font-weight:800;font-size:15px;color:var(--navy);line-height:1.1}
+.hafalan-arab{font-size:13px;color:var(--blue);margin:6px 0 2px;font-weight:800;line-height:1.3;min-height:36px;display:flex;align-items:center;justify-content:center}
+.hafalan-latin{font-size:11px;color:#5A6B7A;margin:2px 0}
+.hafalan-arti{font-size:10px;color:#7A8A9A;font-style:italic}
+.hafalan-hint{font-size:9px;color:white;background:var(--navy);border-radius:99px;padding:2px 8px;display:inline-block;margin-top:6px}
+.hafalan-foot{text-align:center;font-size:11px;color:#7A8A9A;margin:12px 14px 20px}
+
