@@ -35,6 +35,16 @@ body{font-family:'Nunito','Fredoka',system-ui,-apple-system,'Segoe UI',Roboto,Ar
 .confetti-piece{position:absolute;width:10px;height:10px;animation:fall 1.1s ease-out forwards;pointer-events:none}
 /* scrollbar */
 ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-thumb{background:#CBD5E1;border-radius:10px}
+
+/* FIX v9.2: tombol jawaban solid anti-putih */
+#mcqAnswersContainer button{color:#fff !important; font-weight:900 !important; min-height:56px; border-width:3px !important; border-style:solid !important; border-radius:16px !important; box-shadow:0 5px 0 rgba(0,0,0,.18) !important; text-shadow:0 1px 0 rgba(0,0,0,.2)}
+.mcq-c1{background:#E07A5F !important; border-color:#9E402A !important}
+.mcq-c2{background:#38BDF8 !important; border-color:#0284C7 !important}
+.mcq-c3{background:#F59E0B !important; border-color:#B45309 !important}
+.mcq-c4{background:#81B29A !important; border-color:#047857 !important}
+#levelBadge{background:#1D3557 !important; color:#fff !important; border:2px solid #0F172A}
+#visualDisplayBox{background:#FFFDF5 !important; border-color:#E5DCD3 !important}
+
 </style>
 <script>
 // Inline confetti (no CDN) - CSS pieces
@@ -708,7 +718,7 @@ function confetti(opts){
         function playSoundSFX(type) {
             if (!gameState.soundEnabled) return;
             try {
-                if (audioCtx.state === 'suspended') audioCtx.resume();
+                if (audioCtx.state === 'suspended') audioCtx.resume().catch(()=>{});
                 
                 const osc = audioCtx.createOscillator();
                 const gain = audioCtx.createGain();
@@ -755,19 +765,37 @@ function confetti(opts){
         /* -------------------------------------------------------------
            TEXT TO SPEECH ENGINE (INDONESIAN & ARABIC)
         ------------------------------------------------------------- */
+        let _voicesReady=false;
+        function ensureVoices(cb){
+            const v=speechSynthesis.getVoices();
+            if(v.length){ _voicesReady=true; cb&&cb(v); return; }
+            speechSynthesis.onvoiceschanged=()=>{ _voicesReady=true; cb&&cb(speechSynthesis.getVoices()); };
+            setTimeout(()=>{ _voicesReady=true; cb&&cb(speechSynthesis.getVoices()); },600);
+        }
+        function pickVoice(isArabic){
+            const vs=speechSynthesis.getVoices()||[];
+            if(isArabic){ return vs.find(x=>x.lang.startsWith('ar'))||vs[0]||null; }
+            return vs.find(x=>x.lang.toLowerCase().includes('id'))||vs.find(x=>x.lang.toLowerCase().includes('en'))||vs[0]||null;
+        }
         function speakNarrator(text, isArabic = false) {
-            if (!('speechSynthesis' in window)) return;
+            if (!('speechSynthesis' in window)) { showToast('TTS tidak didukung HP ini'); return; }
             try {
+                if(audioCtx && audioCtx.state==='suspended') audioCtx.resume().catch(()=>{});
                 window.speechSynthesis.cancel();
-                const utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = isArabic ? 'ar-SA' : 'id-ID';
-                utterance.volume = 1; // MAX volume
-                utterance.pitch = 1.3;
-                utterance.rate = 0.82;
-                window.speechSynthesis.speak(utterance);
-            } catch(e) {
-                console.log('TTS Error:', e);
-            }
+                const doSpeak=()=>{
+                    const u = new SpeechSynthesisUtterance(text);
+                    const v = pickVoice(isArabic);
+                    if(v) u.voice=v;
+                    u.lang = isArabic ? 'ar-SA' : 'id-ID';
+                    u.volume = 1;
+                    u.pitch = 1.32;
+                    u.rate = 0.84;
+                    u.onend=()=>{};
+                    u.onerror=(e)=>{ console.log('TTS err',e); };
+                    window.speechSynthesis.speak(u);
+                };
+                if(!_voicesReady) ensureVoices(doSpeak); else doSpeak();
+            } catch(e) { console.log('TTS Error:', e); showToast('Audio error'); }
         }
 
         /* -------------------------------------------------------------
@@ -963,10 +991,10 @@ function confetti(opts){
             const choices = [...q.options].sort(() => Math.random() - 0.5);
 
             const colors = [
-                'bg-terraRed border-orange-700 shadow-[0_5px_0_#9E402A]',
-                'bg-skySlate border-sky-700 shadow-[0_5px_0_#0284C7]',
-                'bg-amber-500 border-amber-700 shadow-[0_5px_0_#B45309]',
-                'bg-sageGreen border-emerald-700 shadow-[0_5px_0_#047857]'
+                'mcq-c1',
+                'mcq-c2',
+                'mcq-c3',
+                'mcq-c4'
             ];
 
             choices.forEach((opt, idx) => {
