@@ -1,11 +1,185 @@
 {
-  "title": "Buah Ceria",
+  "title": "Buah Ceria - 9 Buah",
   "questions": [
-    {"id":1,"prompt_text":"Mana buah apel?","audio":"assets/audio/buah_mana_apel.mp3","choices":[{"img":"assets/img/buah_apel.png","label":"Apel"},{"img":"assets/img/buah_pisang.png","label":"Pisang"},{"img":"assets/img/buah_mangga.png","label":"Mangga"}],"correct":0},
-    {"id":2,"prompt_text":"Mana buah pisang?","audio":"assets/audio/buah_mana_pisang.mp3","choices":[{"img":"assets/img/buah_mangga.png","label":"Mangga"},{"img":"assets/img/buah_pisang.png","label":"Pisang"},{"img":"assets/img/buah_apel.png","label":"Apel"}],"correct":1},
-    {"id":3,"prompt_text":"Mana buah mangga?","audio":"assets/audio/buah_mana_mangga.mp3","choices":[{"img":"assets/img/buah_apel.png","label":"Apel"},{"img":"assets/img/buah_mangga.png","label":"Mangga"},{"img":"assets/img/buah_pisang.png","label":"Pisang"}],"correct":1},
-    {"id":4,"prompt_text":"Mana buah apel?","audio":"assets/audio/buah_mana_apel.mp3","choices":[{"img":"assets/img/buah_pisang.png","label":"Pisang"},{"img":"assets/img/buah_apel.png","label":"Apel"},{"img":"assets/img/buah_mangga.png","label":"Mangga"}],"correct":1},
-    {"id":5,"prompt_text":"Mana buah pisang?","audio":"assets/audio/buah_mana_pisang.mp3","choices":[{"img":"assets/img/buah_apel.png","label":"Apel"},{"img":"assets/img/buah_mangga.png","label":"Mangga"},{"img":"assets/img/buah_pisang.png","label":"Pisang"}],"correct":2},
-    {"id":6,"prompt_text":"Mana buah mangga?","audio":"assets/audio/buah_mana_mangga.mp3","choices":[{"img":"assets/img/buah_mangga.png","label":"Mangga"},{"img":"assets/img/buah_apel.png","label":"Apel"},{"img":"assets/img/buah_pisang.png","label":"Pisang"}],"correct":0}
+    {
+      "id": 1,
+      "prompt_text": "Mana buah apel?",
+      "audio": "assets/audio/buah_mana_apel.mp3",
+      "choices": [
+        {
+          "img": "assets/img/buah_stroberi.png",
+          "label": "Stroberi"
+        },
+        {
+          "img": "assets/img/buah_apel.png",
+          "label": "Apel"
+        },
+        {
+          "img": "assets/img/buah_mangga.png",
+          "label": "Mangga"
+        }
+      ],
+      "correct": 1
+    },
+    {
+      "id": 2,
+      "prompt_text": "Mana buah pisang?",
+      "audio": "assets/audio/buah_mana_pisang.mp3",
+      "choices": [
+        {
+          "img": "assets/img/buah_pisang.png",
+          "label": "Pisang"
+        },
+        {
+          "img": "assets/img/buah_semangka.png",
+          "label": "Semangka"
+        },
+        {
+          "img": "assets/img/buah_jeruk.png",
+          "label": "Jeruk"
+        }
+      ],
+      "correct": 0
+    },
+    {
+      "id": 3,
+      "prompt_text": "Mana buah mangga?",
+      "audio": "assets/audio/buah_mana_mangga.mp3",
+      "choices": [
+        {
+          "img": "assets/img/buah_anggur.png",
+          "label": "Anggur"
+        },
+        {
+          "img": "assets/img/buah_jeruk.png",
+          "label": "Jeruk"
+        },
+        {
+          "img": "assets/img/buah_mangga.png",
+          "label": "Mangga"
+        }
+      ],
+      "correct": 2
+    },
+    {
+      "id": 4,
+      "prompt_text": "Mana buah jeruk?",
+      "audio": "assets/audio/buah_mana_jeruk.mp3",
+      "choices": [
+        {
+          "img": "assets/img/buah_apel.png",
+          "label": "Apel"
+        },
+        {
+          "img": "assets/img/buah_pisang.png",
+          "label": "Pisang"
+        },
+        {
+          "img": "assets/img/buah_jeruk.png",
+          "label": "Jeruk"
+        }
+      ],
+      "correct": 2
+    },
+    {
+      "id": 5,
+      "prompt_text": "Mana buah semangka?",
+      "audio": "assets/audio/buah_mana_semangka.mp3",
+      "choices": [
+        {
+          "img": "assets/img/buah_alpukat.png",
+          "label": "Alpukat"
+        },
+        {
+          "img": "assets/img/buah_nanas.png",
+          "label": "Nanas"
+        },
+        {
+          "img": "assets/img/buah_semangka.png",
+          "label": "Semangka"
+        }
+      ],
+      "correct": 2
+    },
+    {
+      "id": 6,
+      "prompt_text": "Mana buah anggur?",
+      "audio": "assets/audio/buah_mana_anggur.mp3",
+      "choices": [
+        {
+          "img": "assets/img/buah_apel.png",
+          "label": "Apel"
+        },
+        {
+          "img": "assets/img/buah_alpukat.png",
+          "label": "Alpukat"
+        },
+        {
+          "img": "assets/img/buah_anggur.png",
+          "label": "Anggur"
+        }
+      ],
+      "correct": 2
+    },
+    {
+      "id": 7,
+      "prompt_text": "Mana buah stroberi?",
+      "audio": "assets/audio/buah_mana_stroberi.mp3",
+      "choices": [
+        {
+          "img": "assets/img/buah_stroberi.png",
+          "label": "Stroberi"
+        },
+        {
+          "img": "assets/img/buah_mangga.png",
+          "label": "Mangga"
+        },
+        {
+          "img": "assets/img/buah_alpukat.png",
+          "label": "Alpukat"
+        }
+      ],
+      "correct": 0
+    },
+    {
+      "id": 8,
+      "prompt_text": "Mana buah nanas?",
+      "audio": "assets/audio/buah_mana_nanas.mp3",
+      "choices": [
+        {
+          "img": "assets/img/buah_apel.png",
+          "label": "Apel"
+        },
+        {
+          "img": "assets/img/buah_alpukat.png",
+          "label": "Alpukat"
+        },
+        {
+          "img": "assets/img/buah_nanas.png",
+          "label": "Nanas"
+        }
+      ],
+      "correct": 2
+    },
+    {
+      "id": 9,
+      "prompt_text": "Mana buah alpukat?",
+      "audio": "assets/audio/buah_mana_alpukat.mp3",
+      "choices": [
+        {
+          "img": "assets/img/buah_anggur.png",
+          "label": "Anggur"
+        },
+        {
+          "img": "assets/img/buah_mangga.png",
+          "label": "Mangga"
+        },
+        {
+          "img": "assets/img/buah_alpukat.png",
+          "label": "Alpukat"
+        }
+      ],
+      "correct": 2
+    }
   ]
 }

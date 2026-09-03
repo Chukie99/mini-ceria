@@ -103,8 +103,9 @@ header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.9);backdrop
 .question-text{font-family:'Fredoka',sans-serif;font-size:18px;font-weight:700;color:var(--navy);line-height:1.15}
 .question-hint{font-size:11px;color:#5A6B7A;font-weight:700;margin-top:2px}
 
-.choices{display:grid;grid-template-columns:1fr;gap:12px}
-@media(min-width:420px){.choices.cols3{grid-template-columns:repeat(3,1fr)} .choices.cols2{grid-template-columns:repeat(2,1fr)}}
+.choices{display:flex;flex-direction:column;gap:12px}
+.choices .choice{width:100%}
+/* vertical always - biar gak kepotong di Tab/HP kecil */
 .choice{background:#fff;border:2.5px solid var(--navy);border-radius:22px;padding:12px 8px 10px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;min-height:168px;justify-content:center;transition:transform .12s, box-shadow .12s;position:relative;box-shadow:4px 4px 0 var(--navy)}
 .choice:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--navy)}
 .choice img{width:120px;height:120px;object-fit:contain;border-radius:16px;background:#F6F8FA;border:2px solid #E9EEF3;padding:8px}

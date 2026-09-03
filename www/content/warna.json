@@ -1,11 +1,205 @@
 {
-  "title": "Warna Ceria",
+  "title": "Warna Ceria - 10 Warna",
   "questions": [
-    {"id":1,"prompt_text":"Mana warna merah? Ayo cari warna merah!","audio":"assets/audio/warna_mana_merah.mp3","choices":[{"img":"assets/img/warna_merah.png","label":"Merah"},{"img":"assets/img/warna_biru.png","label":"Biru"},{"img":"assets/img/warna_kuning.png","label":"Kuning"}],"correct":0},
-    {"id":2,"prompt_text":"Mana warna biru?","audio":"assets/audio/warna_mana_biru.mp3","choices":[{"img":"assets/img/warna_kuning.png","label":"Kuning"},{"img":"assets/img/warna_biru.png","label":"Biru"},{"img":"assets/img/warna_hijau.png","label":"Hijau"}],"correct":1},
-    {"id":3,"prompt_text":"Mana warna kuning?","audio":"assets/audio/warna_mana_kuning.mp3","choices":[{"img":"assets/img/warna_hijau.png","label":"Hijau"},{"img":"assets/img/warna_merah.png","label":"Merah"},{"img":"assets/img/warna_kuning.png","label":"Kuning"}],"correct":2},
-    {"id":4,"prompt_text":"Mana warna hijau?","audio":"assets/audio/warna_mana_hijau.mp3","choices":[{"img":"assets/img/warna_hijau.png","label":"Hijau"},{"img":"assets/img/warna_biru.png","label":"Biru"},{"img":"assets/img/warna_merah.png","label":"Merah"}],"correct":0},
-    {"id":5,"prompt_text":"Mana warna merah?","audio":"assets/audio/warna_mana_merah.mp3","choices":[{"img":"assets/img/warna_biru.png","label":"Biru"},{"img":"assets/img/warna_merah.png","label":"Merah"},{"img":"assets/img/warna_hijau.png","label":"Hijau"}],"correct":1},
-    {"id":6,"prompt_text":"Mana warna kuning?","audio":"assets/audio/warna_mana_kuning.mp3","choices":[{"img":"assets/img/warna_kuning.png","label":"Kuning"},{"img":"assets/img/warna_hijau.png","label":"Hijau"},{"img":"assets/img/warna_biru.png","label":"Biru"}],"correct":0}
+    {
+      "id": 1,
+      "prompt_text": "Mana warna merah?",
+      "audio": "assets/audio/warna_mana_merah.mp3",
+      "choices": [
+        {
+          "img": "assets/img/warna_putih.png",
+          "label": "Putih"
+        },
+        {
+          "img": "assets/img/warna_merah.png",
+          "label": "Merah"
+        },
+        {
+          "img": "assets/img/warna_ungu.png",
+          "label": "Ungu"
+        }
+      ],
+      "correct": 1
+    },
+    {
+      "id": 2,
+      "prompt_text": "Mana warna biru?",
+      "audio": "assets/audio/warna_mana_biru.mp3",
+      "choices": [
+        {
+          "img": "assets/img/warna_biru.png",
+          "label": "Biru"
+        },
+        {
+          "img": "assets/img/warna_ungu.png",
+          "label": "Ungu"
+        },
+        {
+          "img": "assets/img/warna_hijau.png",
+          "label": "Hijau"
+        }
+      ],
+      "correct": 0
+    },
+    {
+      "id": 3,
+      "prompt_text": "Mana warna kuning?",
+      "audio": "assets/audio/warna_mana_kuning.mp3",
+      "choices": [
+        {
+          "img": "assets/img/warna_hitam.png",
+          "label": "Hitam"
+        },
+        {
+          "img": "assets/img/warna_kuning.png",
+          "label": "Kuning"
+        },
+        {
+          "img": "assets/img/warna_ungu.png",
+          "label": "Ungu"
+        }
+      ],
+      "correct": 1
+    },
+    {
+      "id": 4,
+      "prompt_text": "Mana warna hijau?",
+      "audio": "assets/audio/warna_mana_hijau.mp3",
+      "choices": [
+        {
+          "img": "assets/img/warna_hijau.png",
+          "label": "Hijau"
+        },
+        {
+          "img": "assets/img/warna_oranye.png",
+          "label": "Oranye"
+        },
+        {
+          "img": "assets/img/warna_ungu.png",
+          "label": "Ungu"
+        }
+      ],
+      "correct": 0
+    },
+    {
+      "id": 5,
+      "prompt_text": "Mana warna ungu?",
+      "audio": "assets/audio/warna_mana_ungu.mp3",
+      "choices": [
+        {
+          "img": "assets/img/warna_kuning.png",
+          "label": "Kuning"
+        },
+        {
+          "img": "assets/img/warna_hitam.png",
+          "label": "Hitam"
+        },
+        {
+          "img": "assets/img/warna_ungu.png",
+          "label": "Ungu"
+        }
+      ],
+      "correct": 2
+    },
+    {
+      "id": 6,
+      "prompt_text": "Mana warna oranye?",
+      "audio": "assets/audio/warna_mana_oranye.mp3",
+      "choices": [
+        {
+          "img": "assets/img/warna_hitam.png",
+          "label": "Hitam"
+        },
+        {
+          "img": "assets/img/warna_oranye.png",
+          "label": "Oranye"
+        },
+        {
+          "img": "assets/img/warna_biru.png",
+          "label": "Biru"
+        }
+      ],
+      "correct": 1
+    },
+    {
+      "id": 7,
+      "prompt_text": "Mana warna pink?",
+      "audio": "assets/audio/warna_mana_pink.mp3",
+      "choices": [
+        {
+          "img": "assets/img/warna_pink.png",
+          "label": "Pink"
+        },
+        {
+          "img": "assets/img/warna_coklat.png",
+          "label": "Coklat"
+        },
+        {
+          "img": "assets/img/warna_ungu.png",
+          "label": "Ungu"
+        }
+      ],
+      "correct": 0
+    },
+    {
+      "id": 8,
+      "prompt_text": "Mana warna coklat?",
+      "audio": "assets/audio/warna_mana_coklat.mp3",
+      "choices": [
+        {
+          "img": "assets/img/warna_coklat.png",
+          "label": "Coklat"
+        },
+        {
+          "img": "assets/img/warna_pink.png",
+          "label": "Pink"
+        },
+        {
+          "img": "assets/img/warna_kuning.png",
+          "label": "Kuning"
+        }
+      ],
+      "correct": 0
+    },
+    {
+      "id": 9,
+      "prompt_text": "Mana warna hitam?",
+      "audio": "assets/audio/warna_mana_hitam.mp3",
+      "choices": [
+        {
+          "img": "assets/img/warna_ungu.png",
+          "label": "Ungu"
+        },
+        {
+          "img": "assets/img/warna_putih.png",
+          "label": "Putih"
+        },
+        {
+          "img": "assets/img/warna_hitam.png",
+          "label": "Hitam"
+        }
+      ],
+      "correct": 2
+    },
+    {
+      "id": 10,
+      "prompt_text": "Mana warna putih?",
+      "audio": "assets/audio/warna_mana_putih.mp3",
+      "choices": [
+        {
+          "img": "assets/img/warna_hitam.png",
+          "label": "Hitam"
+        },
+        {
+          "img": "assets/img/warna_oranye.png",
+          "label": "Oranye"
+        },
+        {
+          "img": "assets/img/warna_putih.png",
+          "label": "Putih"
+        }
+      ],
+      "correct": 2
+    }
   ]
 }

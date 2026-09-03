@@ -1,15 +1,525 @@
 {
-  "title": "Alfabet Ceria - A sampai F",
+  "title": "Alfabet Ceria - A sampai Z Lengkap (26 Huruf)",
   "questions": [
-    {"id":1,"prompt_text":"Yang mana huruf A?","audio":"assets/audio/alfabet_mana_a.mp3","choices":[{"img":"assets/img/alfabet_A.png","label":"A"},{"img":"assets/img/alfabet_B.png","label":"B"},{"img":"assets/img/alfabet_C.png","label":"C"}],"correct":0},
-    {"id":2,"prompt_text":"Yang mana huruf B?","audio":"assets/audio/alfabet_mana_b.mp3","choices":[{"img":"assets/img/alfabet_C.png","label":"C"},{"img":"assets/img/alfabet_B.png","label":"B"},{"img":"assets/img/alfabet_A.png","label":"A"}],"correct":1},
-    {"id":3,"prompt_text":"Yang mana huruf C?","audio":"assets/audio/alfabet_mana_c.mp3","choices":[{"img":"assets/img/alfabet_A.png","label":"A"},{"img":"assets/img/alfabet_F.png","label":"F"},{"img":"assets/img/alfabet_C.png","label":"C"}],"correct":2},
-    {"id":4,"prompt_text":"Yang mana huruf D?","audio":"assets/audio/alfabet_mana_d.mp3","choices":[{"img":"assets/img/alfabet_D.png","label":"D"},{"img":"assets/img/alfabet_E.png","label":"E"},{"img":"assets/img/alfabet_F.png","label":"F"}],"correct":0},
-    {"id":5,"prompt_text":"Yang mana huruf E?","audio":"assets/audio/alfabet_mana_e.mp3","choices":[{"img":"assets/img/alfabet_B.png","label":"B"},{"img":"assets/img/alfabet_E.png","label":"E"},{"img":"assets/img/alfabet_C.png","label":"C"}],"correct":1},
-    {"id":6,"prompt_text":"Yang mana huruf F?","audio":"assets/audio/alfabet_mana_f.mp3","choices":[{"img":"assets/img/alfabet_A.png","label":"A"},{"img":"assets/img/alfabet_D.png","label":"D"},{"img":"assets/img/alfabet_F.png","label":"F"}],"correct":2},
-    {"id":7,"prompt_text":"Yang mana huruf A?","audio":"assets/audio/alfabet_mana_a.mp3","choices":[{"img":"assets/img/alfabet_F.png","label":"F"},{"img":"assets/img/alfabet_A.png","label":"A"},{"img":"assets/img/alfabet_E.png","label":"E"}],"correct":1},
-    {"id":8,"prompt_text":"Yang mana huruf C?","audio":"assets/audio/alfabet_mana_c.mp3","choices":[{"img":"assets/img/alfabet_C.png","label":"C"},{"img":"assets/img/alfabet_B.png","label":"B"},{"img":"assets/img/alfabet_D.png","label":"D"}],"correct":0},
-    {"id":9,"prompt_text":"Yang mana huruf E?","audio":"assets/audio/alfabet_mana_e.mp3","choices":[{"img":"assets/img/alfabet_E.png","label":"E"},{"img":"assets/img/alfabet_A.png","label":"A"},{"img":"assets/img/alfabet_F.png","label":"F"}],"correct":0},
-    {"id":10,"prompt_text":"Yang mana huruf B?","audio":"assets/audio/alfabet_mana_b.mp3","choices":[{"img":"assets/img/alfabet_D.png","label":"D"},{"img":"assets/img/alfabet_C.png","label":"C"},{"img":"assets/img/alfabet_B.png","label":"B"}],"correct":2}
+    {
+      "id": 1,
+      "prompt_text": "Yang mana huruf A?",
+      "audio": "assets/audio/alfabet_mana_a.mp3",
+      "choices": [
+        {
+          "img": "assets/img/alfabet_B.png",
+          "label": "B"
+        },
+        {
+          "img": "assets/img/alfabet_Y.png",
+          "label": "Y"
+        },
+        {
+          "img": "assets/img/alfabet_A.png",
+          "label": "A"
+        }
+      ],
+      "correct": 2
+    },
+    {
+      "id": 2,
+      "prompt_text": "Yang mana huruf B?",
+      "audio": "assets/audio/alfabet_mana_b.mp3",
+      "choices": [
+        {
+          "img": "assets/img/alfabet_V.png",
+          "label": "V"
+        },
+        {
+          "img": "assets/img/alfabet_R.png",
+          "label": "R"
+        },
+        {
+          "img": "assets/img/alfabet_B.png",
+          "label": "B"
+        }
+      ],
+      "correct": 2
+    },
+    {
+      "id": 3,
+      "prompt_text": "Yang mana huruf C?",
+      "audio": "assets/audio/alfabet_mana_c.mp3",
+      "choices": [
+        {
+          "img": "assets/img/alfabet_S.png",
+          "label": "S"
+        },
+        {
+          "img": "assets/img/alfabet_C.png",
+          "label": "C"
+        },
+        {
+          "img": "assets/img/alfabet_N.png",
+          "label": "N"
+        }
+      ],
+      "correct": 1
+    },
+    {
+      "id": 4,
+      "prompt_text": "Yang mana huruf D?",
+      "audio": "assets/audio/alfabet_mana_d.mp3",
+      "choices": [
+        {
+          "img": "assets/img/alfabet_A.png",
+          "label": "A"
+        },
+        {
+          "img": "assets/img/alfabet_D.png",
+          "label": "D"
+        },
+        {
+          "img": "assets/img/alfabet_P.png",
+          "label": "P"
+        }
+      ],
+      "correct": 1
+    },
+    {
+      "id": 5,
+      "prompt_text": "Yang mana huruf E?",
+      "audio": "assets/audio/alfabet_mana_e.mp3",
+      "choices": [
+        {
+          "img": "assets/img/alfabet_E.png",
+          "label": "E"
+        },
+        {
+          "img": "assets/img/alfabet_C.png",
+          "label": "C"
+        },
+        {
+          "img": "assets/img/alfabet_W.png",
+          "label": "W"
+        }
+      ],
+      "correct": 0
+    },
+    {
+      "id": 6,
+      "prompt_text": "Yang mana huruf F?",
+      "audio": "assets/audio/alfabet_mana_f.mp3",
+      "choices": [
+        {
+          "img": "assets/img/alfabet_F.png",
+          "label": "F"
+        },
+        {
+          "img": "assets/img/alfabet_H.png",
+          "label": "H"
+        },
+        {
+          "img": "assets/img/alfabet_D.png",
+          "label": "D"
+        }
+      ],
+      "correct": 0
+    },
+    {
+      "id": 7,
+      "prompt_text": "Yang mana huruf G?",
+      "audio": "assets/audio/alfabet_mana_g.mp3",
+      "choices": [
+        {
+          "img": "assets/img/alfabet_K.png",
+          "label": "K"
+        },
+        {
+          "img": "assets/img/alfabet_Z.png",
+          "label": "Z"
+        },
+        {
+          "img": "assets/img/alfabet_G.png",
+          "label": "G"
+        }
+      ],
+      "correct": 2
+    },
+    {
+      "id": 8,
+      "prompt_text": "Yang mana huruf H?",
+      "audio": "assets/audio/alfabet_mana_h.mp3",
+      "choices": [
+        {
+          "img": "assets/img/alfabet_Q.png",
+          "label": "Q"
+        },
+        {
+          "img": "assets/img/alfabet_H.png",
+          "label": "H"
+        },
+        {
+          "img": "assets/img/alfabet_E.png",
+          "label": "E"
+        }
+      ],
+      "correct": 1
+    },
+    {
+      "id": 9,
+      "prompt_text": "Yang mana huruf I?",
+      "audio": "assets/audio/alfabet_mana_i.mp3",
+      "choices": [
+        {
+          "img": "assets/img/alfabet_O.png",
+          "label": "O"
+        },
+        {
+          "img": "assets/img/alfabet_I.png",
+          "label": "I"
+        },
+        {
+          "img": "assets/img/alfabet_Z.png",
+          "label": "Z"
+        }
+      ],
+      "correct": 1
+    },
+    {
+      "id": 10,
+      "prompt_text": "Yang mana huruf J?",
+      "audio": "assets/audio/alfabet_mana_j.mp3",
+      "choices": [
+        {
+          "img": "assets/img/alfabet_J.png",
+          "label": "J"
+        },
+        {
+          "img": "assets/img/alfabet_D.png",
+          "label": "D"
+        },
+        {
+          "img": "assets/img/alfabet_N.png",
+          "label": "N"
+        }
+      ],
+      "correct": 0
+    },
+    {
+      "id": 11,
+      "prompt_text": "Yang mana huruf K?",
+      "audio": "assets/audio/alfabet_mana_k.mp3",
+      "choices": [
+        {
+          "img": "assets/img/alfabet_S.png",
+          "label": "S"
+        },
+        {
+          "img": "assets/img/alfabet_G.png",
+          "label": "G"
+        },
+        {
+          "img": "assets/img/alfabet_K.png",
+          "label": "K"
+        }
+      ],
+      "correct": 2
+    },
+    {
+      "id": 12,
+      "prompt_text": "Yang mana huruf L?",
+      "audio": "assets/audio/alfabet_mana_l.mp3",
+      "choices": [
+        {
+          "img": "assets/img/alfabet_X.png",
+          "label": "X"
+        },
+        {
+          "img": "assets/img/alfabet_L.png",
+          "label": "L"
+        },
+        {
+          "img": "assets/img/alfabet_A.png",
+          "label": "A"
+        }
+      ],
+      "correct": 1
+    },
+    {
+      "id": 13,
+      "prompt_text": "Yang mana huruf M?",
+      "audio": "assets/audio/alfabet_mana_m.mp3",
+      "choices": [
+        {
+          "img": "assets/img/alfabet_M.png",
+          "label": "M"
+        },
+        {
+          "img": "assets/img/alfabet_O.png",
+          "label": "O"
+        },
+        {
+          "img": "assets/img/alfabet_T.png",
+          "label": "T"
+        }
+      ],
+      "correct": 0
+    },
+    {
+      "id": 14,
+      "prompt_text": "Yang mana huruf N?",
+      "audio": "assets/audio/alfabet_mana_n.mp3",
+      "choices": [
+        {
+          "img": "assets/img/alfabet_V.png",
+          "label": "V"
+        },
+        {
+          "img": "assets/img/alfabet_N.png",
+          "label": "N"
+        },
+        {
+          "img": "assets/img/alfabet_W.png",
+          "label": "W"
+        }
+      ],
+      "correct": 1
+    },
+    {
+      "id": 15,
+      "prompt_text": "Yang mana huruf O?",
+      "audio": "assets/audio/alfabet_mana_o.mp3",
+      "choices": [
+        {
+          "img": "assets/img/alfabet_Q.png",
+          "label": "Q"
+        },
+        {
+          "img": "assets/img/alfabet_O.png",
+          "label": "O"
+        },
+        {
+          "img": "assets/img/alfabet_T.png",
+          "label": "T"
+        }
+      ],
+      "correct": 1
+    },
+    {
+      "id": 16,
+      "prompt_text": "Yang mana huruf P?",
+      "audio": "assets/audio/alfabet_mana_p.mp3",
+      "choices": [
+        {
+          "img": "assets/img/alfabet_E.png",
+          "label": "E"
+        },
+        {
+          "img": "assets/img/alfabet_P.png",
+          "label": "P"
+        },
+        {
+          "img": "assets/img/alfabet_O.png",
+          "label": "O"
+        }
+      ],
+      "correct": 1
+    },
+    {
+      "id": 17,
+      "prompt_text": "Yang mana huruf Q?",
+      "audio": "assets/audio/alfabet_mana_q.mp3",
+      "choices": [
+        {
+          "img": "assets/img/alfabet_E.png",
+          "label": "E"
+        },
+        {
+          "img": "assets/img/alfabet_Q.png",
+          "label": "Q"
+        },
+        {
+          "img": "assets/img/alfabet_U.png",
+          "label": "U"
+        }
+      ],
+      "correct": 1
+    },
+    {
+      "id": 18,
+      "prompt_text": "Yang mana huruf R?",
+      "audio": "assets/audio/alfabet_mana_r.mp3",
+      "choices": [
+        {
+          "img": "assets/img/alfabet_K.png",
+          "label": "K"
+        },
+        {
+          "img": "assets/img/alfabet_W.png",
+          "label": "W"
+        },
+        {
+          "img": "assets/img/alfabet_R.png",
+          "label": "R"
+        }
+      ],
+      "correct": 2
+    },
+    {
+      "id": 19,
+      "prompt_text": "Yang mana huruf S?",
+      "audio": "assets/audio/alfabet_mana_s.mp3",
+      "choices": [
+        {
+          "img": "assets/img/alfabet_S.png",
+          "label": "S"
+        },
+        {
+          "img": "assets/img/alfabet_M.png",
+          "label": "M"
+        },
+        {
+          "img": "assets/img/alfabet_C.png",
+          "label": "C"
+        }
+      ],
+      "correct": 0
+    },
+    {
+      "id": 20,
+      "prompt_text": "Yang mana huruf T?",
+      "audio": "assets/audio/alfabet_mana_t.mp3",
+      "choices": [
+        {
+          "img": "assets/img/alfabet_T.png",
+          "label": "T"
+        },
+        {
+          "img": "assets/img/alfabet_C.png",
+          "label": "C"
+        },
+        {
+          "img": "assets/img/alfabet_D.png",
+          "label": "D"
+        }
+      ],
+      "correct": 0
+    },
+    {
+      "id": 21,
+      "prompt_text": "Yang mana huruf U?",
+      "audio": "assets/audio/alfabet_mana_u.mp3",
+      "choices": [
+        {
+          "img": "assets/img/alfabet_J.png",
+          "label": "J"
+        },
+        {
+          "img": "assets/img/alfabet_U.png",
+          "label": "U"
+        },
+        {
+          "img": "assets/img/alfabet_P.png",
+          "label": "P"
+        }
+      ],
+      "correct": 1
+    },
+    {
+      "id": 22,
+      "prompt_text": "Yang mana huruf V?",
+      "audio": "assets/audio/alfabet_mana_v.mp3",
+      "choices": [
+        {
+          "img": "assets/img/alfabet_V.png",
+          "label": "V"
+        },
+        {
+          "img": "assets/img/alfabet_X.png",
+          "label": "X"
+        },
+        {
+          "img": "assets/img/alfabet_R.png",
+          "label": "R"
+        }
+      ],
+      "correct": 0
+    },
+    {
+      "id": 23,
+      "prompt_text": "Yang mana huruf W?",
+      "audio": "assets/audio/alfabet_mana_w.mp3",
+      "choices": [
+        {
+          "img": "assets/img/alfabet_W.png",
+          "label": "W"
+        },
+        {
+          "img": "assets/img/alfabet_P.png",
+          "label": "P"
+        },
+        {
+          "img": "assets/img/alfabet_G.png",
+          "label": "G"
+        }
+      ],
+      "correct": 0
+    },
+    {
+      "id": 24,
+      "prompt_text": "Yang mana huruf X?",
+      "audio": "assets/audio/alfabet_mana_x.mp3",
+      "choices": [
+        {
+          "img": "assets/img/alfabet_V.png",
+          "label": "V"
+        },
+        {
+          "img": "assets/img/alfabet_X.png",
+          "label": "X"
+        },
+        {
+          "img": "assets/img/alfabet_N.png",
+          "label": "N"
+        }
+      ],
+      "correct": 1
+    },
+    {
+      "id": 25,
+      "prompt_text": "Yang mana huruf Y?",
+      "audio": "assets/audio/alfabet_mana_y.mp3",
+      "choices": [
+        {
+          "img": "assets/img/alfabet_Y.png",
+          "label": "Y"
+        },
+        {
+          "img": "assets/img/alfabet_P.png",
+          "label": "P"
+        },
+        {
+          "img": "assets/img/alfabet_M.png",
+          "label": "M"
+        }
+      ],
+      "correct": 0
+    },
+    {
+      "id": 26,
+      "prompt_text": "Yang mana huruf Z?",
+      "audio": "assets/audio/alfabet_mana_z.mp3",
+      "choices": [
+        {
+          "img": "assets/img/alfabet_Z.png",
+          "label": "Z"
+        },
+        {
+          "img": "assets/img/alfabet_O.png",
+          "label": "O"
+        },
+        {
+          "img": "assets/img/alfabet_R.png",
+          "label": "R"
+        }
+      ],
+      "correct": 0
+    }
   ]
 }

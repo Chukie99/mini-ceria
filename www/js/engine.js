@@ -149,8 +149,7 @@ function renderQuestion(){
 
   const wrap = el("choices");
   wrap.innerHTML="";
-  const cols = q.choices.length<=2 ? "cols2" : "cols3";
-  wrap.className="choices "+cols;
+  wrap.className="choices"; // vertical fixed
   q.choices.forEach((c, i)=>{
     const btn = document.createElement("button");
     btn.className="choice";
@@ -222,7 +221,8 @@ function handleTap(choiceIdx){
 
 // LICENSE
 function isLicensed(){
-  return localStorage.getItem(LICENSE_KEY) === "ACTIVATED" || localStorage.getItem(LICENSE_KEY)?.startsWith("CERIA-");
+  // DISABLED for test - always true
+  return true;
 }
 function validateLicense(code){
   code = (code||"").toUpperCase().trim();
@@ -314,6 +314,8 @@ const app = {
     }
     showScreen("raport");
   },
+  dismissExit(){ el("exitPopup").classList.add("hidden"); },
+  confirmExit(){ try{ if(window.Capacitor) Capacitor.Plugins.App.exitApp(); }catch(e){} try{ navigator.app && navigator.app.exitApp && navigator.app.exitApp(); }catch(e){} window.close(); },
   resetRaport(){
     if(confirm("Hapus semua data raport & bintang?")){
       localStorage.removeItem(RAPORT_KEY);
@@ -353,7 +355,11 @@ window.addEventListener("popstate", (e)=>{
   if(active && active.id==="game"){
     e.preventDefault();
     app.goHome();
-    history.pushState({screen:"home"}, "", "#home");
+    try{ history.pushState({screen:"home"}, "", "#home"); }catch(e){}
+  } else if(active && active.id==="home"){
+    e.preventDefault();
+    el("exitPopup").classList.remove("hidden");
+    try{ history.pushState({screen:"home"}, "", "#home"); }catch(e){}
   }
 });
 // hardware back via capacitor
@@ -384,10 +390,7 @@ document.addEventListener("backbutton", (e)=>{
 // init
 loadProgress();
 // show license if not licensed (after splash)
-setTimeout(()=>{
-  if(!isLicensed()){
-    el("licenseOverlay").classList.remove("hidden");
-  }
-}, 1800);
+// license gate disabled for test
+// setTimeout(()=>{ if(!isLicensed()) el("licenseOverlay").classList.remove("hidden"); }, 1800);
 // push initial state
 try{ history.replaceState({screen:"home"}, "", "#home"); }catch(e){}
